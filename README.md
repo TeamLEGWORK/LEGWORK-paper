@@ -1,10 +1,9 @@
+
 <p align="center">
-    <p align="center">
-        <img width="500", src="https://raw.githubusercontent.com/TeamLEGWORK/LEGWORK/main/docs/images/legwork.png">
-        <br>
-        <h2>The LEGWORK Release Paper</h2>
-    </p>
-    <br>
+    <img width="500", src="https://raw.githubusercontent.com/TeamLEGWORK/LEGWORK/main/docs/images/legwork.png">
+</p>
+<h2 align="center">The LEGWORK Release Paper</h2>
+<p align="center">
     <a href="https://github.com/TeamLEGWORK/LEGWORK-paper/actions/workflows/showyourwork.yml">
         <img src="https://github.com/TeamLEGWORK/LEGWORK-paper/actions/workflows/showyourwork.yml/badge.svg" alt="Article status"/>
     </a>
@@ -25,4 +24,12 @@
     </a>
 </p>
 
-This repository contains all of the code needed to reproduce the LEGWORK release paper.
+This repository contains all of the code needed to reproduce the [LEGWORK](https://github.com/TeamLEGWORK/LEGWORK) release paper. It uses an excellent template from [showyourwork](https://github.com/rodluger/showyourwork), which is a repository that helps authors to publish all of the code related to a paper!
+
+You can use the badges above to access the main parts of the repo (from the pdf of the paper to the LEGWORK documentation). We also encourage you to look at [`src/figures`](src/figures) which houses the scripts used to generate each of the figures in the paper.
+
+### Citations
+If you use any of the code or figures from this paper, or use [LEGWORK](https://github.com/TeamLEGWORK/LEGWORK), then please use the following BibTeX citations
+```
+    TODO: Enter various citation methods in here when we submit
+```
