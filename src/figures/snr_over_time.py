@@ -10,9 +10,9 @@ fs = 24
 # update various fontsizes to match
 params = {'figure.figsize': (12, 8),
           'legend.fontsize': fs,
-          'axes.labelsize': fs,
-          'xtick.labelsize': 0.9 * fs,
-          'ytick.labelsize': 0.9 * fs,
+          'axes.labelsize': 0.7 * fs,
+          'xtick.labelsize': 0.6 * fs,
+          'ytick.labelsize': 0.6 * fs,
           'axes.linewidth': 1.1,
           'xtick.major.size': 7,
           'xtick.minor.size': 4,
