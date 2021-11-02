@@ -39,9 +39,6 @@
 \newcommand{\tutorialIcon}{{\color{\lwColour}{\faLaptopCode}}}
 \newcommand{\tutorialLink}[1]{\href{#1}{\tutorialIcon}}
 
-\newcommand{\notebookIcon}{{\color{\lwColour}{\faBook}}}
-\newcommand{\notebookLink}[1]{\href{#1}{\notebookIcon}}
-
 % add documentation links to equation environments
 % Luger+19 inspired this!
 \newtagform{eqtag}[]{(}{)}
@@ -109,7 +106,7 @@ Specifically, we implement the expressions by \citet{Peters+1963} and \citet{Pet
 
 The open-source nature of the project means that new users as well as seasoned experts in the field can work together in a collaborative setting to consider new features and enhancements to the package as well as check the implementation. At the same time, with our thorough online documentation, derivations and tutorials, we hope \lw{} can make this functionality more accessible to the broader scientific community.
 
-\lw{} can be installed with pip or obtained from the GitHub repository \href{https://github.com/TeamLEGWORK/LEGWORK}{\faGithub}\footnote{\url{https://github.com/TeamLEGWORK/LEGWORK}}. All examples shown in this paper and code to reproduce the figures are available in the repository. Throughout this paper a \tutorialIcon{} icon in a section links to a related online tutorial and a \notebookIcon{} icon links to a Jupyter notebook with related code examples. Instructions for installation and basic usage are provided in the online documentation\footnote{\url{https://legwork.readthedocs.io/en/latest/}} which contain the most up-to-date instructions.
+\lw{} can be installed with pip or obtained from the GitHub repository \href{https://github.com/TeamLEGWORK/LEGWORK}{\faGithub}\footnote{\url{https://github.com/TeamLEGWORK/LEGWORK}}. All examples shown in this paper and code to reproduce the figures are available in the repository. Instructions for installation and basic usage are provided in the online documentation\footnote{\url{https://legwork.readthedocs.io/en/latest/}} which contain the most up-to-date instructions.
 
 The paper is organised as follows. In Section~\ref{sec:LEGWORK-overview} we give an overview of the capabilities of the \lw{} package and its various modules. In Section~\ref{sec:example-uses} we outline some example use cases of \lw{} to demonstrate its use. We detail the derivations of the equations relevant for \lw{} in Section~\ref{sec:derivations}. Finally, in Section~\ref{sec:summary} we conclude and summarise our work.
 
@@ -149,9 +146,9 @@ Moreover, for increasingly eccentric sources, gravitational waves are emitted in
 Lastly, as a simple (yet thoroughly effective) optimisation, we interpolate (1) $g(n, e)$, which is a complicated combination of Bessel functions used in several calculations (see Eq.~\ref{eq:g(n,e)}) (2) the given sensitivity curve $S_{\rm n}(f)$. This significantly reduces the runtime of most strain and SNR calculations for large populations of sources.
 
 \section{Use cases}\label{sec:example-uses}
-In this section, we demonstrate \lw{}'s range of capabilities through a series of example use cases. The plots and results in each subsection are reproduced directly in online demos in the \lw{} documentation, which are each based on individual Jupyter notebooks. These are linked at the start of each subsection with the \tutorialIcon{} and \notebookIcon{} icons respectively.
+In this section, we demonstrate \lw{}'s range of capabilities through a series of example use cases. The plots and results in each subsection are reproduced directly in online demos in the \lw{} documentation, which are each based on individual Jupyter notebooks. These tutorials are linked at the start of each subsection with the \tutorialIcon{} icon.
 
-\subsection{Computing the SNR of a binary system\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/BasicSNRCalculation.html} \notebookLink{https://github.com/TeamLEGWORK/LEGWORK/blob/main/docs/demos/BasicSnrCalculation.ipynb}}{}}
+\subsection{Computing the SNR of a binary system\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/BasicSNRCalculation.html}}{}}
 
 The most fundamental use case of \lw{} is to compute the SNR of a binary system in LISA. This can be accomplished in \lw{} with only two lines of code - one line to set up the source and another to compute the SNR. As an example one could consider a binary with the parameters
 \begin{align*}
@@ -162,7 +159,7 @@ where $m_1, m_2$ are the primary and secondary masses, $d$ is the distance to th
 
 Moreover, this can be generalised to a population of many binary systems with ease. Instead of inputting single values for each parameter, one can input arrays of values where each entry corresponds to a different binary. As an example, we can take the same parameters as above for 3 different binaries but vary the primary as $m_1 = [5, 10, 15] \unit{M_{\odot}}$. Using \lw{} we find that the SNR for each of these cases is $\rho = [2.47, 4.49, 7.85]$.
 
-\subsection{Horizon distance\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/HorizonDistance.html} \notebookLink{https://github.com/TeamLEGWORK/LEGWORK/blob/main/docs/demos/HorizonDistance.ipynb}}{}}
+\subsection{Horizon distance\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/HorizonDistance.html}}{}}
 
 \begin{figure*}[htb]
     \centering
@@ -186,7 +183,7 @@ We convert these SNRs to horizon distances using Eq.~\ref{eq:snr_to_hor_dist} an
 
 One can use Figure~\ref{fig:horizon_distance} to estimate the horizon distance for any circular source of interest. To illustrate this, we add solid black lines to indicate the typical chirp masses of some possible stellar mass gravitational wave sources as well as white dotted lines to show the distances to nearby galaxies as well as the nearest ground-based gravitational wave detection (GW170817, \citealp{Abbott+2017_GW170817}). For example, we see that a circular NSNS with an orbital frequency greater than a mHz is detectable in the Magellanic clouds.
 
-\subsection{The role of eccentricity\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/TheRoleofEccentricity.html} \notebookLink{https://github.com/TeamLEGWORK/LEGWORK/blob/main/docs/demos/TheRoleofEccentricity.ipynb}}{}}\label{sec:eccentricity_role}
+\subsection{The role of eccentricity\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/TheRoleofEccentricity.html}}{}}\label{sec:eccentricity_role}
 
 The role of eccentricity is an important concept to consider in the detection of gravitational waves with LISA as sources can still have significant eccentricity during their inspiral phase. A high eccentricity has two major effects on the SNR of a gravitational wave source in LISA and we can investigate this using \lw{}.
 
@@ -228,7 +225,7 @@ Another consideration for more massive binaries is whether the increased eccentr
 
 We plot the results of this calculation in Figure~\ref{fig:merger_time}. This plot shows that for most eccentricities the merger is time is largely determined by the orbital frequency. However, for high eccentricities ($e > 0.8$), the eccentricity significantly reduces the merger time.
 
-\subsection{Compare different gravitational wave detectors\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/CompareSensitivityCurves.html} \notebookLink{https://github.com/TeamLEGWORK/LEGWORK/blob/main/docs/demos/CompareSensitivityCurves.ipynb}}{}}
+\subsection{Compare gravitational wave detectors\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/CompareSensitivityCurves.html}}{}}
 
 It may also be useful to consider how changing the specifications of the LISA detector, or using a different detector entirely, could affect the SNR of a particular source. \lw{} is capable of adjusting the LISA mission specifications or using a different sensitivity curve and thus we can use it to explore these differences.
 
@@ -252,7 +249,7 @@ Using \lw{}, we can compute the SNR of a grid of sources (spanning a range of fr
     \label{fig:detector_snr_ratio}
 \end{figure}
 
-\subsection{Track SNR of a binary over time\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/SNROverTime.html} \notebookLink{https://github.com/TeamLEGWORK/LEGWORK/blob/main/docs/demos/SNROverTime.ipynb}}{}}
+\subsection{Track SNR of a binary over time\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/SNROverTime.html}}{}}
 
 As a binary inspirals its orbital frequency and eccentricity change and this in turn affects the SNR of the binary. For this use case we will demonstrate how \lw{} can be used to track the evolution of these parameters and pinpoint the moment at which a binary becomes detectable.
 
