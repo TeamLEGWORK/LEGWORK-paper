@@ -4,7 +4,7 @@ dependencies:
   - numpy>=1.20
   - pip>=20.3.3
   - python=3.9
-  - astropy
+  - astropy>=4.3.1
   - pip:
       - matplotlib>=3.3.3
-      - legwork
+      - legwork>=0.1.0
