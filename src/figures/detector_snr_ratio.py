@@ -44,7 +44,7 @@ sources.get_merger_time()
 LISA_snr = sources.get_snr(verbose=True, which_sources=sources.t_merge > 0.1 * u.yr)
 
 # compute the TianQin SNR
-sources.update_sc_params({"instrument": "TianQin", "L": None})
+sources.update_sc_params({"instrument": "TianQin", "t_obs": 4 * u.yr, "L": None})
 TQ_snr = sources.get_snr(instrument="TianQin", verbose=True, which_sources=sources.t_merge > 0.1 * u.yr)
 
 # create a figure
