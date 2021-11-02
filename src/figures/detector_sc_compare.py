@@ -47,4 +47,6 @@ lw.visualisation.plot_sensitivity_curve(frequency_range=fr, instrument="TianQin"
 
 ax.legend(fontsize=0.7*fs)
 
+ax.set_rasterization_zorder(10000)
+
 plt.savefig("detector_sc_compare.pdf", format="pdf", bbox_inches="tight")

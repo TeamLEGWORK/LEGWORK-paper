@@ -50,4 +50,6 @@ ax.annotate(mass_string, xy=(0.5, 0.04), xycoords="axes fraction", fontsize=0.6*
 ax.set_xlabel(r"Orbital frequency, $f_{\rm orb} \, [\rm Hz]$")
 ax.set_ylabel(r"Eccentricity, $e$")
 
+ax.set_rasterization_zorder(10000)
+
 plt.savefig("merger_time.pdf", format="pdf", bbox_inches="tight")

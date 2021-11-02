@@ -161,4 +161,6 @@ ax.annotate(r"$e = 0.0$", xy=(0.03, 0.04), xycoords="axes fraction", fontsize=0.
 
 ax.set_facecolor(plt.get_cmap("viridis")(0.0))
 
+ax.set_rasterization_zorder(10000)
+
 plt.savefig("horizon_distance.pdf", format="pdf", bbox_inches="tight")

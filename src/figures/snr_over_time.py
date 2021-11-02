@@ -83,4 +83,6 @@ for ax in axes:
                 xycoords="axes fraction", va="top" if ax != axes[0] else "bottom",
                 fontsize=0.5*fs, bbox=dict(boxstyle="round", fc="white", ec="white"))
 
+ax.set_rasterization_zorder(10000)
+
 plt.savefig("snr_over_time.pdf", format="pdf", bbox_inches="tight")

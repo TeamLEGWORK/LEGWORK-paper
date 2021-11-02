@@ -89,4 +89,6 @@ source_string += r"$D_L = {{{}}} \, {{ \rm kpc}}$".format(dist[0].value)
 ax.annotate(source_string, xy=(0.98, 0.03), xycoords="axes fraction", ha="right", fontsize=0.75*fs,
             bbox=dict(boxstyle="round", facecolor="white", edgecolor="white", alpha=0.5, pad=0.4))
 
+ax.set_rasterization_zorder(10000)
+
 plt.savefig("detector_snr_ratio.pdf", format="pdf", bbox_inches="tight")

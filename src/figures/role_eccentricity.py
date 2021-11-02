@@ -84,4 +84,6 @@ ax.annotate(annotation_string, xy=(3.5e-1, 1.3e-20), ha="center", va="bottom", f
 
 ax.set_ylim(1e-20, 2e-18)
 
+ax.set_rasterization_zorder(10000)
+
 plt.savefig("role_eccentricity.pdf", format="pdf", bbox_inches="tight")
