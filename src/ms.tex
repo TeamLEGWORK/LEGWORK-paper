@@ -1,4 +1,4 @@
-\documentclass[twocolumn]{aastex63}
+\documentclass[twocolumn]{aastex631}
 \received{\today}
 \shorttitle{LEGWORK}
 \graphicspath{{./}{figures/}}
@@ -6,7 +6,7 @@
 \usepackage{physics}
 \usepackage{mathtools}
 \usepackage{etoolbox}
-\usepackage{fontawesome5}
+\usepackage{fontawesome}
 
 % remove indents in footnotes
 \usepackage[hang,flushmargin]{footmisc} 
@@ -23,6 +23,9 @@
 
 \newcommand{\avg}[1]{\left\langle#1\right\rangle}
 
+% define colour from xcolor
+\definecolor{SeaGreen}{RGB}{63, 188, 157}
+
 % LEGWORK stuff
 \newcommand{\lw}{LEGWORK}
 \newcommand{\lwColour}{SeaGreen}
@@ -31,10 +34,10 @@
 \newcommand{\lwFuncURL}[2]{https://legwork.readthedocs.io/en/latest/api/legwork.#1.#2.html\#legwork.#1.#2}
 
 % icons and links
-\newcommand{\docsIcon}{{\color{\lwColour}{\faFileCode}}}
+\newcommand{\docsIcon}{{\color{\lwColour}{\faBook}}}
 \newcommand{\docsLink}[1]{\href{#1}{\docsIcon}}
 
-\newcommand{\tutorialIcon}{{\color{\lwColour}{\faLaptopCode}}}
+\newcommand{\tutorialIcon}{{\color{\lwColour}{\faBook}}}
 \newcommand{\tutorialLink}[1]{\href{#1}{\tutorialIcon}}
 
 \newcommand{\notebookIcon}{{\color{\lwColour}{\faBook}}}
@@ -115,7 +118,7 @@ The paper is organised as follows. In Section~\ref{sec:LEGWORK-overview} we give
 
 \begin{figure}
     \centering
-    \includegraphics[width=\columnwidth]{package_overview_witharrows.png}
+    \includegraphics[width=\columnwidth]{static/package_overview.png}
     \caption{Package structure of \lw{}. Each box represents a module and describes its function. The arrows indicate the inter-dependencies of the modules.}
     \label{fig:package_overview}
 \end{figure}
@@ -164,7 +167,7 @@ Moreover, this can be generalised to a population of many binary systems with ea
 
 \begin{figure*}[htb]
     \centering
-    \includegraphics[width=\textwidth]{horizon_distance_chirp_mass.pdf}
+    \includegraphics[width=\textwidth]{figures/horizon_distance.pdf}
     \caption{The horizon distance for circular stellar mass binaries in a four-year LISA mission. The filled contours indicate the horizon distance for different orbital frequencies and chirp masses. We add white dotted contours at $8, 50, 800 \unit{kpc}$ and $40 \unit{Mpc}$ to highlight the distances to the centre of the Milky Way, the Magellanic Clouds, the Andromeda galaxy and the nearest ground-based gravitational wave detection (GW170817, \citealp{Abbott+2017_GW170817}) respectively. The diagonal line black line shows the frequencies and chirp masses at which the merger time is equal to the observation time. This line emphasises the sharp contrast for the horizon distance for binaries that merge before the LISA mission finishes observing (to the right of the line). The horizontal black lines indicate the approximate location of some common double compact object types on this plot, with the assumed masses labelled below in solar masses.}
     \label{fig:horizon_distance}
 \end{figure*}
@@ -202,22 +205,22 @@ We see two effects in the signal-to-noise ratio here. First, increasing the ecce
 
 The second effect is more intriguing. We see that increasing the eccentricity from $e = 0.6$ to $e = 0.9$ results in a relative \textit{decrease} in SNR ($\rho=50.2 \to \rho=38.8$). The reason for this is that eccentric binaries emit gravitational waves at many harmonic frequencies (unlike circular binaries, which emit predominantly twice the orbital frequency). This leads to the gravitational wave signal being diluted over many frequencies higher than the orbital frequency, where the higher the eccentricity, the more harmonics are required to capture all of the gravitational luminosity \citep[see][Fig.\,3]{Peters+1963}. Therefore, if the eccentricity is too high, the majority of the signal may be emitted at a frequency to which LISA is less sensitive.
 
-We can illustrate this point with \lw{} by calculating the SNR at each individual harmonic using the \lwModLink{snr} module. We plot this distribution of signal over different harmonics with the LISA sensitivity curve overlaid in Fig.~\ref{fig:ecc_effects} using \lw{}'s \lwModLink{visualisation} module. A point is plotted for each harmonic of each source that has an SNR greater than unity and such that its height above the sensitivity curve corresponds to its SNR.
+We can illustrate this point with \lw{} by calculating the SNR at each individual harmonic using the \lwModLink{snr} module. We plot this distribution of signal over different harmonics with the LISA sensitivity curve overlaid in Fig.~\ref{fig:role_eccentricity} using \lw{}'s \lwModLink{visualisation} module. A point is plotted for each harmonic of each source that has an SNR greater than unity and such that its height above the sensitivity curve corresponds to its SNR.
 
 \begin{figure}[tb]
     \centering
-    \includegraphics[width=\columnwidth]{role_eccentricity.pdf}
+    \includegraphics[width=\columnwidth]{figures/role_eccentricity.pdf}
     \caption{An illustration of the effect of eccentricity on the detectability of a LISA source. The three sets of points are coloured by their eccentricity and each individual point corresponds to a harmonic frequency, where its height above the curve gives its SNR. We annotate each set of points with its total SNR and overlay the LISA sensitivity curve. The dotted vertical lines indicate the frequency at which the majority of the gravitational wave signal is concentrated.}
-    \label{fig:ecc_effects}
+    \label{fig:role_eccentricity}
 \end{figure}
 
-From Fig.~\ref{fig:ecc_effects}, we can better understand why a source with $e = 0.9$ has a lower SNR than the same source with $e = 0.6$. From the dotted lines, we can note that the signal from the $e = 0.9$ source is concentrated at a frequency of around $4 \times 10^{-2} \unit{Hz}$. The LISA sensitivity at this point is much weaker than the $6 \times 10^{-3} \unit{Hz}$ at which the $e =0.6$ source is concentrated. Therefore, although the strain from a more eccentric binary is stronger, the SNR is lower due to the increased noise in the LISA detector.
+From Fig.~\ref{fig:role_eccentricity}, we can better understand why a source with $e = 0.9$ has a lower SNR than the same source with $e = 0.6$. From the dotted lines, we can note that the signal from the $e = 0.9$ source is concentrated at a frequency of around $4 \times 10^{-2} \unit{Hz}$. The LISA sensitivity at this point is much weaker than the $6 \times 10^{-3} \unit{Hz}$ at which the $e =0.6$ source is concentrated. Therefore, although the strain from a more eccentric binary is stronger, the SNR is lower due to the increased noise in the LISA detector.
 
 Overall, we can therefore conclude that for LISA sources of this nature, higher eccentricity will produce more detectable binaries only if the orbital frequency is not already at or above the minimum of the LISA sensitivity curve.
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\columnwidth]{merger_time_contours.pdf}
+    \includegraphics[width=\columnwidth]{figures/merger_time.pdf}
     \caption{The merger time for a binary with both a primary and secondary mass of $10 \unit{M_{\odot}}$ over different eccentricities and orbital frequencies.}
     \label{fig:merger_time}
 \end{figure}
@@ -234,7 +237,7 @@ As a first step, we can use \lw{} to plot a series of sensitivity curves in Figu
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\columnwidth]{detector_sc_compare.pdf}
+    \includegraphics[width=\columnwidth]{figures/detector_sc_compare.pdf}
     \caption{The strain spectral density of the LISA detector (with different specifications) and the TianQin detector. We show the LISA curve for three different mission lengths and once with an approximate response function.}
     \label{fig:detector_sc_compare}
 \end{figure}
@@ -245,7 +248,7 @@ Using \lw{}, we can compute the SNR of a grid of sources (spanning a range of fr
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\columnwidth]{detector_snr_ratio.pdf}
+    \includegraphics[width=\columnwidth]{figures/detector_snr_ratio.pdf}
     \caption{The ratio of the SNR in LISA (for a four year mission) to the SNR in TianQin. The dashed line indicates the transition at which the SNR is equal in both detectors. We annotate the regions in which either detector has a higher SNR and also annotate the mass and distance of each source in the grid.}
     \label{fig:detector_snr_ratio}
 \end{figure}
@@ -271,7 +274,7 @@ Note that \lw{} could also be used in this way to find the SNR of any system in 
 
 \begin{figure}
     \centering
-    \includegraphics[width=\columnwidth]{snr_over_time.pdf}
+    \includegraphics[width=\columnwidth]{figures/snr_over_time.pdf}
     \caption{The evolution of a binary system's eccentricity (top), orbital frequency (middle) and signal-to-noise ratio (bottom). Each panel is annotated with the constant parameters of the system. The SNR is calculated for a 4-year LISA mission. We annotate in  a line the bottom panel at $\mathrm{SNR} = 7$ to highlight the moment at which the source becomes detectable.}
     \label{fig:snr_over_time}
 \end{figure}
@@ -678,12 +681,14 @@ Finally, for a stationary and circular binary the signal-to-noise ratio is
 \software{\lw{} is written in \texttt{Python}, available from \url{python.org}. We make use of the following Python packages: \texttt{matplotlib} \citep{Hunter+2007}, \texttt{NumPy} \citep{2020NumPy-Array},
 \texttt{Astropy} \citep[\url{http://www.astropy.org}][]{AstropyCollaboration+2013,AstropyCollaboration+2018}, \texttt{Seaborn} \citep{Waskom+2021}, \texttt{SciPy} \citep{2020SciPy-NMeth}, \texttt{Numba} \citep{numba} and \texttt{Schwimmbad} \citep{Price-Whelan+2017}.}
 
-\acknowledgments{
-% People
-We are grateful to Valeria Korol, Tyson Littenberg, Alberto Sesana, Ilya Mandel, Mike Lau, Lieke van Son, Floor Broekgaarden, Stephen Justham, Will Farr, the CCA GW group, the BinCosmos group and the COMPAS group for stimulating discussions that influenced and motivated us to complete this project. We thank the BinCosmos group for testing an early version of the package and providing useful feedback. We also thank Lieke van Son for her innovation in inventing a name for \lw{}!
 
-% Grants
-This project was funded in part by the National Science Foundation under Grant No.\ (NSF grant number 2009131), the European Union’s Horizon 2020 research and innovation program from the European Research Council (ERC, Grant agreement No.\ 715063), and by the Netherlands Organization for Scientific Research (NWO) as part of the Vidi research program BinWaves with project number 639.042.728. We further acknowledge the Black Hole Initiative funded by a generous contribution of the John Templeton Foundation and the Gordon and Betty Moore Foundation.}
+\begin{acknowledgements}
+    % People
+    We are grateful to Valeria Korol, Tyson Littenberg, Alberto Sesana, Ilya Mandel, Mike Lau, Lieke van Son, Floor Broekgaarden, Stephen Justham, Will Farr, the CCA GW group, the BinCosmos group and the COMPAS group for stimulating discussions that influenced and motivated us to complete this project. We thank the BinCosmos group for testing an early version of the package and providing useful feedback. We also thank Lieke van Son for her innovation in inventing a name for \lw{}!
+    
+    % Grants
+    This project was funded in part by the National Science Foundation under Grant No.\ (NSF grant number 2009131), the European Union’s Horizon 2020 research and innovation program from the European Research Council (ERC, Grant agreement No.\ 715063), and by the Netherlands Organization for Scientific Research (NWO) as part of the Vidi research program BinWaves with project number 639.042.728. We further acknowledge the Black Hole Initiative funded by a generous contribution of the John Templeton Foundation and the Gordon and Betty Moore Foundation.
+\end{acknowledgements}
 
 \bibliography{references}
 \bibliographystyle{aasjournal}
