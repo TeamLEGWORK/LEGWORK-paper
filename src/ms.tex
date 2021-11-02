@@ -244,14 +244,14 @@ As a first step, we can use \lw{} to plot a series of sensitivity curves in Figu
 
 Although comparing the sensitivity curves would suffice for a stationary and circular source (since it would remain at a single frequency), \lw{} can also be used to see how the relative SNR between two detectors changes over a range of eccentricities and frequencies.
 
-% Using \lw{}, we can compute the SNR of a grid of sources (spanning a range of frequencies and eccentricities) for both detectors. In Figure~\ref{fig:detector_snr_ratio}, we show the ratio of the SNR in LISA to the SNR in TianQin. This plot shows that for circular binaries, the SNR of the source in LISA is stronger up to an orbital frequency of approximately $2.5 \unit{mHz}$, beyond which the SNR of the source is stronger in TianQin. This transition frequency becomes lower with increasing eccentricity as one would expect since eccentric sources emit more at higher harmonics and thus higher frequencies.
+Using \lw{}, we can compute the SNR of a grid of sources (spanning a range of frequencies and eccentricities) for both detectors. In Figure~\ref{fig:detector_snr_ratio}, we show the ratio of the SNR in LISA to the SNR in TianQin. This plot shows that for circular binaries, the SNR of the source in LISA is stronger up to an orbital frequency of approximately $2.5 \unit{mHz}$, beyond which the SNR of the source is stronger in TianQin. This transition frequency becomes lower with increasing eccentricity as one would expect since eccentric sources emit more at higher harmonics and thus higher frequencies.
 
-% \begin{figure}[htb]
-%     \centering
-%     \includegraphics[width=\columnwidth]{figures/detector_snr_ratio.pdf}
-%     \caption{The ratio of the SNR in LISA (for a four year mission) to the SNR in TianQin. The dashed line indicates the transition at which the SNR is equal in both detectors. We annotate the regions in which either detector has a higher SNR and also annotate the mass and distance of each source in the grid.}
-%     \label{fig:detector_snr_ratio}
-% \end{figure}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/detector_snr_ratio.pdf}
+    \caption{The ratio of the SNR in LISA (for a four year mission) to the SNR in TianQin. The dashed line indicates the transition at which the SNR is equal in both detectors. We annotate the regions in which either detector has a higher SNR and also annotate the mass and distance of each source in the grid.}
+    \label{fig:detector_snr_ratio}
+\end{figure}
 
 \subsection{Track SNR of a binary over time\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/SNROverTime.html} \notebookLink{https://github.com/TeamLEGWORK/LEGWORK/blob/main/docs/demos/SNROverTime.ipynb}}{}}
 
