@@ -28,11 +28,11 @@ m_2 = np.repeat(10, len(f_range) * len(e_range)) * u.Msun
 
 F, E = np.meshgrid(f_range, e_range)
 
-t_merge = lw.evol.get_t_merge_ecc(ecc_i=E.flatten(), f_orb_i=F.flatten(), m_1=m_1, m_2=m_2).reshape(F.shape)
-
+t_merge = lw.evol.get_t_merge_ecc(ecc_i=E.flatten(), f_orb_i=F.flatten(), m_1=m_1, m_2=m_2,
+                                  small_e_tol=0.15, large_e_tol=0.9999).reshape(F.shape)
 fig, ax = plt.subplots()
 
-cont = ax.contourf(F, E, np.log10(t_merge.to(u.yr).value), cmap="plasma_r", levels=np.linspace(-8, 10, 19))
+cont = ax.contourf(F, E, np.log10(t_merge.to(u.yr).value), cmap="plasma_r", levels=np.linspace(-6, 10, 17))
 cbar = fig.colorbar(cont, label=r"Merger time, $\log_{10} (t_{\rm merge} / {\rm yr})$")
 ax.set_xscale("log")
 
@@ -49,6 +49,10 @@ ax.annotate(mass_string, xy=(0.5, 0.04), xycoords="axes fraction", fontsize=0.6*
 
 ax.set_xlabel(r"Orbital frequency, $f_{\rm orb} \, [\rm Hz]$")
 ax.set_ylabel(r"Eccentricity, $e$")
+
+mission_length = ax.contour(F, E, np.log10(t_merge.to(u.yr).value), levels=np.log10([4]),
+                            linestyles="--", linewidths=2)
+ax.clabel(mission_length, fmt={np.log10(4): r"$t_{\rm merge} = 4\,{\rm years}$"}, fontsize=0.7*fs, manual=[(1e-2, 0.5)])
 
 ax.set_rasterization_zorder(10000)
 
