@@ -86,7 +86,7 @@
 \email{tomjwagg@gmail.com}
 
 \begin{abstract}
-We present \lw{} (LISA Evolution and Gravitational Wave Orbit Kit), an open-source Python package for making predictions about stellar-origin gravitational wave sources and their detectability in LISA or other space-based gravitational wave detectors. \lw{} can be used to evolve the orbits of sources due to gravitational wave emission, calculate gravitational wave strains (using post-Newtonian approximations), compute signal-to-noise ratios and visualise the results. It can be applied to a variety of potential sources, including binaries consisting of white dwarfs, neutron stars and black holes. Although we focus on double compact objects, in principle \lw{} can be used for any system with a user-specified orbital evolution, such as those affected by a third object or gas drag. We optimised the package to make it efficient for use in population studies which can contain tens-of-millions of sources. This paper describes the package and presents several potential use cases. We explain in detail the derivations of the expressions behind the package as well as identify and clarify some discrepancies currently present in the literature. We hope that \lw{} will enable and accelerate future studies triggered by the rapidly growing interest in gravitational wave sources.
+    We present \lw{} (LISA Evolution and Gravitational Wave Orbit Kit), an open-source Python package for making predictions about stellar-origin gravitational wave sources and their detectability in LISA or other space-based gravitational wave detectors. \lw{} can be used to evolve the orbits of sources due to gravitational wave emission, calculate gravitational wave strains (using post-Newtonian approximations), compute signal-to-noise ratios and visualise the results. It can be applied to a variety of potential sources, including binaries consisting of white dwarfs, neutron stars and black holes. Although we focus on double compact objects, in principle \lw{} can be used for any system with a user-specified orbital evolution, such as those affected by a third object or gas drag. We optimised the package to make it efficient for use in population studies which can contain tens-of-millions of sources. This paper describes the package and presents several potential use cases. We explain in detail the derivations of the expressions behind the package as well as identify and clarify some discrepancies currently present in the literature. We hope that \lw{} will enable and accelerate future studies triggered by the rapidly growing interest in gravitational wave sources.
 \end{abstract}
 
 \keywords{open source software, gravitational waves, gravitational wave detectors, compact objects, orbital evolution, white dwarfs, neutron stars, stellar mass black holes }
@@ -95,19 +95,21 @@ We present \lw{} (LISA Evolution and Gravitational Wave Orbit Kit), an open-sour
 
 The planned space-based gravitational wave detector LISA (Laser Interferometer Space Antenna) will present an entirely new view of gravitational waves by focusing on lower frequencies ($10^{-5} < f / \unit{Hz} < 10^{-1}$) than ground-based detectors. This will enable the study of many new source classes including mergers of supermassive black holes \citep[e.g.][]{Begelman+1980, Klein+2016, Bellovary2019}, extreme mass ratio inspirals \citep[e.g.,][]{Berti2006, Barack2007, Babak2017, Moore2017}, and cosmological GW backgrounds \citep[e.g.,][]{Bartolo2016, Caprini2016, Caldwell2019}. However, this frequency regime is also of interest for the detection of local stellar-mass binaries during their inspiral phase. LISA is expected to detect Galactic stellar-origin binaries containing combinations of white dwarfs, neutron stars, and black holes, ranging from the numerous double white dwarf population, to the rare but loud double black hole population.
 
-The potential to detect stellar-origin sources with LISA has been studied in the past \citep[e.g.][]{Nelemans+2001, Liu+2009, Liu+2014, Ruiter+2010, Belczynski+2010, Yu+2010, Nissanke+2012}. More recently, the direct detection of gravitational waves with ground-based detectors has led to renewed interest in this topic with many recent papers addressing the issue \citep[e.g.][]{Korol+2017, Korol+2018, Korol+2019, Korol+2020, Christian+2017, Kremer+2017, Kremer+2018, Lamberts+2018, Lamberts+2019, Fang+2019, Andrews+2020, Lau+2020, Breivik+2020, Breivik+2020a, Roebber+2020, Chen+2020, Sesana+2020, Shao+2021}.
+The potential to detect stellar-origin sources with LISA has been studied in the past by various groups \citep[e.g.][]{Nelemans+2001, Liu+2009, Liu+2014, Ruiter+2010, Belczynski+2010, Yu+2010, Nissanke+2012}. The recent direct detection of gravitational waves with ground-based detectors has led to renewed interest in this topic \citep[e.g.][]{Korol+2017, Korol+2018, Korol+2019, Korol+2020, Christian+2017, Kremer+2017, Kremer+2018, Lamberts+2018, Lamberts+2019, Fang+2019, Andrews+2020, Lau+2020, Breivik+2020, Breivik+2020a, Roebber+2020, Chen+2020, Sesana+2020, Shao+2021}.
 
 Each of these studies require making estimates of the signal-to-noise ratio of individual binary systems and possibly the slow gravitational wave inspiral that lead to the present-day parameters. So far, most studies made use of custom made codes which have not been made publicly available. 
 
 We believe that the large renewed interest in LISA and the stellar-origin sources it may detect will lead to many more studies in the near future that would need similar computations. This leads to a significant amount of redundancy which, at best results in extra work for each individual and at worst leads to an increased chance of introducing mistakes and inconsistencies when translating the necessary expressions to software.
 
-\lw{} is an open-source Python package designed to streamline the process of making predictions of LISA detection rates for stellar-origin binaries such that it is as fast, reliable and simple as possible. This goal makes \lw{} unique among other implementations of gravitational-wave tools in the literature, which focus on a more broad coverage of the gravitational-wave spectrum and source classes, rather than an optimised approach for certain sources. \citep[e.g.][]{Moore+2015,Yi2021}. With \lw{} one can evolve the orbits of a binary or a collection of binaries and calculate their strain amplitudes for any range of frequency harmonics. One can compute the sensitivity curve for LISA or other future gravitational wave detectors (e.g. TianQin's curve, or that of a custom instrument) and use it to compute the signal-to-noise ratio of a collection of sources. Furthermore, \lw{} provides tools to visualise all of the results with easy-to-use plotting functions. Finally, \lw{} is fully tested to check for consistency in the derivations described below.
+\lw{} is an open-source Python package designed to streamline the process of making predictions of LISA detection rates for stellar-origin binaries such that it is as fast, reliable and simple as possible. With \lw{} one can evolve the orbits of a binary or a collection of binaries and calculate their strain amplitudes for any range of frequency harmonics. One can compute the sensitivity curve for LISA or other future gravitational wave detectors (e.g. TianQin's curve, or that of a custom instrument) and use it to compute the signal-to-noise ratio of a collection of sources. Furthermore, \lw{} provides tools to visualise all of the results with easy-to-use plotting functions. Finally, \lw{} is fully tested to check for consistency in the derivations described below.
 
 Specifically, we implement the post-Newtonian expressions by \citet{Peters+1963} and \citet{Peters+1964} for the evolution of binary orbits due to the emission of gravitational waves, equations for the strain amplitudes and signal-to-noise ratios of binaries from various papers \citep[e.g.][]{Flanagan+1998, Finn+2000, Cornish2003, Barack+2004, Moore+2015} and approximations for the LISA and TianQin sensitivity curves given in \citet{Robson+2019} and \citet{Huang+2020} respectively.
 
 The open-source nature of the project means that new users as well as seasoned experts in the field can work together in a collaborative setting to consider new features and enhancements to the package as well as check the implementation. At the same time, with our thorough online documentation, derivations and tutorials, we hope \lw{} can make this functionality more accessible to the broader scientific community.
 
-\lw{} has been developed with stellar-origin binary population studies in mind. Wagg et al.\ (in prep) investigates several populations of potential LISA sources (double black holes, black hole neutron stars and double neutron stars). They use \lw{} to evolve each synthesised source over the age of the Milky Way, make predictions about the LISA detectable population and explore how it varies with different binary physics assumptions. Additionally, Thiele et al.\ (in prep) examines the implications of assuming a metallicity-dependent binary fraction for the formation of close double white dwarfs (WDWDs) in the LISA frequency band. They use \lw{} to calculate the SNR of WDWDs and, in particular, apply a custom noise model that combines the LISA sensitivity curve from \citet{Robson+2019} with a new fit for the Galactic confusion noise based on their WDWD population.
+We note that \lw{} is not the only initiative of this kind. We highlight the ``Gravitational Wave Universe Toolbox'' presented by \citet{Yi2021} which was developed to simulate observations on the GW universe with different detectors covering the full gravitational-wave spectrum and source classes. We also highlight ``GWPlotter'' by \citep{Moore+2015}, which provides an interactive plotting tool to compare the sensitivity of different gravitational wave detectors. \lw{} differs from the tools listed here as we have tried to provide tools that are optimised to rapidly make predictions for large populations of stellar-origin sources and we have focused on space-based detectors.
+
+\lw{} has been developed with stellar-origin binary population studies in mind. We highlight two upcoming papers that use our package. Wagg et al.\ (in prep) investigates several populations of potential LISA sources (double black holes, black hole neutron stars and double neutron stars). They use \lw{} to evolve each synthesised source over the age of the Milky Way, make predictions about the LISA detectable population and explore how it varies with different binary physics assumptions. Additionally, Thiele et al.\ (in prep) examines the implications of assuming a metallicity-dependent binary fraction for the formation of close double white dwarfs (WDWDs) in the LISA frequency band. They use \lw{} to calculate the SNR of WDWDs and, in particular, apply a custom noise model that combines the LISA sensitivity curve from \citet{Robson+2019} with a new fit for the Galactic confusion noise based on their WDWD population.
 
 \lw{} can be installed with pip or obtained from the GitHub repository \href{https://github.com/TeamLEGWORK/LEGWORK}{\faGithub}\footnote{\url{https://github.com/TeamLEGWORK/LEGWORK}}. All examples shown in this paper and code to reproduce the figures are available in the repository. Instructions for installation and basic usage are provided in the online documentation\footnote{\url{https://legwork.readthedocs.io/en/latest/}} which contain the most up-to-date instructions.
 
@@ -168,7 +170,7 @@ It is often convenient to convert between orbital frequency, $f_{\rm orb}$, and 
     a = \qty(\frac{G(m_1 + m_2)}{(2 \pi f_{\rm orb})^{2}})^{1/3},
     \label{eq:kepler3rd}
 \end{equation}
-where $G$ is the gravitational constant. Inversely we could write
+where $G$ is the gravitational constant. Inversely,
 \begin{equation}{\lwFuncURL{utils}{get_a_from_f_orb}}
     f_{\rm orb} = \frac{1}{2 \pi} \sqrt{\frac{G(m_1 + m_2)}{a^3}}.
     \label{eq:kepler3rd_reverse}
@@ -227,7 +229,7 @@ The orbital evolution is more complex for eccentric binaries since the semi-majo
     a(e) = c_0 \frac{e^{12/19}}{(1 - e^2)} \left(1 + \frac{121}{304} e^2\right)^{870/2299},
     \label{eq:a_from_e}
 \end{equation}
-where $c_0$ satisfies the initial conditions such that $a(e_0) = a_0$. The time derivative of the eccentricity, $e$, is given by
+where $c_0$ satisfies the initial conditions such that $a(e_0) = a_0$. The time derivative of the eccentricity, $e$, is
 \begin{equation}{\lwFuncURL{evol}{de_dt}}
     \frac{\mathrm{d}e}{\mathrm{d}t} = -\frac{19}{12} \frac{\beta}{c_{0}^{4}} \frac{e^{-29 / 19}\left(1-e^{2}\right)^{3 / 2}}{\left[1+(121 / 304) e^{2}\right]^{\frac{1181}{2299}}},
     \label{eq:dedt}
@@ -249,7 +251,7 @@ For very small or very large eccentricities we approximate this integral using t
 In addition, we implement the fit to Eq.~\ref{eq:t_merge_eccentric} from \citet{Mandel+2021} that approximates the merger time as
 \begin{equation}{\lwFuncURL{evol}{t_merge_mandel_fit}}
     \begin{split}
-        t_{\rm merge} \approx& t_{\rm merge, circ} (1 - e^2_0)^{7/2} \\
+        t_{\rm merge} \approx&\ t_{\rm merge, circ} (1 - e^2_0)^{7/2} \\
     &\times(1 + 0.27 e_0^{10} + 0.33 e^{20}_0 + 0.2 e_0^{1000} ),
     \end{split}
 \end{equation}
@@ -350,7 +352,7 @@ where $\left\langle F_{+}^{2}\right\rangle$ and $\left\langle F_{\times}^{2}\rig
 and
 \begin{equation}{\lwFuncURL{utils}{D_plus_D_cross}}
     \begin{split}
-       \avg{ D_{+} D_{\times}} = \frac{243}{512} \cos \theta \sin 2 \phi &\left(2 \cos ^{2} \phi-1\right) \\ &\times \left(1+\cos ^{2} \theta\right),
+        \avg{ D_{+} D_{\times}} = \frac{243}{512} \cos \theta \sin 2 \phi &\left(2 \cos ^{2} \phi-1\right) \\ &\times \left(1+\cos ^{2} \theta\right),
     \end{split}
 \label{eq:d_plus_cross}
 \end{equation}
@@ -363,7 +365,7 @@ and
 \end{equation}
 \begin{equation}{\lwFuncURL{utils}{D_plus_squared}}
     \begin{split}
-       \avg{ D_{+}^{2} } =  \frac{3}{2048}\big[&487+158 \cos ^{2} \theta+7 \cos ^{4} \theta\\
+        \avg{ D_{+}^{2} } =  \frac{3}{2048}\big[&487+158 \cos ^{2} \theta+7 \cos ^{4} \theta\\
         &-162 \sin ^{2} 2 \phi\left(1+\cos ^{2} \theta\right)^{2}\big].
     \end{split}
 \label{eq:d_plus}
@@ -480,7 +482,7 @@ From \cite{Robson+2019}, we can write the position and polarisation average of t
     \begin{split}
         \mathcal{R} &= \langle F_+F^{\star}_+ \rangle = \langle F_{\times}F^{\star}_{\times} \rangle,\\
     \rm{where}\,\,
-   \langle F_{+,\times}F^{\star}_{+,\times} \rangle &= \int \frac{d\Omega_{\theta,\phi}}{4 \pi} \int \frac{d\psi}{\pi} |F_{+,\times}|^2.
+    \langle F_{+,\times}F^{\star}_{+,\times} \rangle &= \int \frac{d\Omega_{\theta,\phi}}{4 \pi} \int \frac{d\psi}{\pi} |F_{+,\times}|^2.
     \end{split}
 \end{equation}
 Then combining Eq.~\ref{eq:position_orientation_ave} and Eq.~\ref{eq:response}, we then find\footnote{Note that this is written in \cite{Flanagan+1998} for the LIGO response function which is $\mathcal{R} = \langle F_{+,\times} \rangle ^2 = 1/5$.}
@@ -544,15 +546,15 @@ Finally, noting that $dE/df = dE/dt \times dt/df = \dot{E}/\dot{f}$, we can use 
 \end{equation}
 to finish up our position, direction, and orientation/polarisation averaged SNR as
 \begin{equation}{}
-   \langle \rho \rangle^2 = \int_0^{\infty}df \frac{h_{c}^2}{f^2P_{\rm n}(f)/\mathcal{R}(f)} = \int_0^{\infty}df \frac{h_{c}^2}{f^2 S_{\rm n}(f)},
-   \label{eq:snr_finished_circ}
+    \langle \rho \rangle^2 = \int_0^{\infty}df \frac{h_{c}^2}{f^2P_{\rm n}(f)/\mathcal{R}(f)} = \int_0^{\infty}df \frac{h_{c}^2}{f^2 S_{\rm n}(f)},
+    \label{eq:snr_finished_circ}
 \end{equation}
 where we have used that the effective power spectral density of the noise is defined as $S_{\rm n}(f) = P_{\rm n}(f) / \mathcal{R}(f)$.
 
 It is also important to note that this is only the SNR for a circular binary for which we need only consider the $n = 2$ harmonic. In the general case, a binary could be eccentric and requires a sum over \textit{all} harmonics. Thus we can generalise Eq.~\ref{eq:snr_finished_circ} to eccentric binaries with
 \begin{equation}{\lwFuncURL{snr}{snr_ecc_evolving}}
     \langle \rho \rangle^2 = \sum_{n = 1}^{\infty} \langle \rho_n \rangle^2 = \sum_{n = 1}^{\infty} \int_0^{\infty} d f_n \frac{h_{c, n}^2}{f_n^2 S_{\rm n}(f_n)},
-   \label{eq:snr_general}
+    \label{eq:snr_general}
 \end{equation}
 where $h_{c, n}$ is defined in Eq.~\ref{eq:char_strain} and $S_{\rm n}$ in Eq.~\ref{eq:LISA_Sn}.
 
