@@ -86,18 +86,6 @@
 \email{tomjwagg@gmail.com}
 
 \begin{abstract}
-% Original
-%    We present \lw{}, a Python package for making predictions about stellar-origin gravitational wave sources and their detectability in LISA and other space-based gravitational wave detectors. \lw{} can be used to evolve sources over time, calculate gravitational wave strains, compute signal-to-noise ratios and visualise the results. In this paper we give an overview of the structure and functionality of the package, as well as highlight several optimisations that make it particularly efficient for use in population studies which can contain tens-of-millions of sources. We demonstrate the various capabilities of \lw{} through a series of example use cases. These begin with a basic example of calculating the signal-to-noise ratio of a source but also include using \lw{} to calculate horizon distances and make comparisons between gravitational-wave detectors. We additionally explain in detail the derivation of the equations behind \lw{} in order to clarify some conflicts currently present in the literature.
-
-% -------------
-
-% Selma version
-% We present \lw{} (LISA Evolution and Gravitational Wave Orbit Kit) an open-source Python package developed to aid studies of stellar-origin gravitational wave sources detectable by space-based gravitational wave detectors such as LISA. 
-% %
-% This package can be used to follow the gravitational wave driven inspiral of a compact binary consisting of, for example, white dwarfs, neutron stars and/or stellar-mass black holes. We calculate the gravitational wave strains using the post-Newtonian approximations and estimate the signal-to-noise ratio for a given detector sensitivity. We optimised \lw{} to make it feasible to make predictions for populations of tens-of-millions of sources. In principle, \lw{} can be used for any systems with a user-specified orbital evolution, such as those affected by a third object or gas drag. 
-% %
-% This paper describes the package and presents several use cases. We provide the derivations behind the expressions and we identify and clarify some discrepancies in the expressions presented in earlier literature. We hope that \lw{} will enable and accelerate future studies triggered by the rapidly growing interest in gravitational wave sources.
-
 We present \lw{} (LISA Evolution and Gravitational Wave Orbit Kit), an open-source Python package for making predictions about stellar-origin gravitational wave sources and their detectability in LISA or other space-based gravitational wave detectors. \lw{} can be used to evolve the orbits of sources due to gravitational wave emission, calculate gravitational wave strains (using post-Newtonian approximations), compute signal-to-noise ratios and visualise the results. It can be applied to a variety of potential sources, including binaries consisting of white dwarfs, neutron stars and black holes. Although we focus on double compact objects, in principle \lw{} can be used for any system with a user-specified orbital evolution, such as those affected by a third object or gas drag. We optimised the package to make it efficient for use in population studies which can contain tens-of-millions of sources. This paper describes the package and presents several potential use cases. We explain in detail the derivations of the expressions behind the package as well as identify and clarify some discrepancies currently present in the literature. We hope that \lw{} will enable and accelerate future studies triggered by the rapidly growing interest in gravitational wave sources.
 \end{abstract}
 
@@ -119,7 +107,7 @@ Specifically, we implement the post-Newtonian expressions by \citet{Peters+1963}
 
 The open-source nature of the project means that new users as well as seasoned experts in the field can work together in a collaborative setting to consider new features and enhancements to the package as well as check the implementation. At the same time, with our thorough online documentation, derivations and tutorials, we hope \lw{} can make this functionality more accessible to the broader scientific community.
 
-\lw{} has been adopted in multiple studies. Wagg et al.\ (in prep) investigates several populations of potential LISA sources (double black holes, black hole neutron stars and double neutron stars). They use \lw{} to evolve each synthesised source over the age of the Milky Way, make predictions about the LISA detectable population and explore how it varies with different binary physics assumptions. Additionally, Thiele et al.\ (in prep) examines the implications of assuming a metallicity-dependent binary fraction for the formation of close double white dwarfs (WDWDs) in the LISA frequency band. They use \lw{} to calculate the SNR of WDWDs and, in particular, apply a custom noise model that combines the LISA sensitivity curve from \citet{Robson+2019} with a new fit for the Galactic confusion noise based on their WDWD population.
+\lw{} has been developed with stellar-origin binary population studies in mind. Wagg et al.\ (in prep) investigates several populations of potential LISA sources (double black holes, black hole neutron stars and double neutron stars). They use \lw{} to evolve each synthesised source over the age of the Milky Way, make predictions about the LISA detectable population and explore how it varies with different binary physics assumptions. Additionally, Thiele et al.\ (in prep) examines the implications of assuming a metallicity-dependent binary fraction for the formation of close double white dwarfs (WDWDs) in the LISA frequency band. They use \lw{} to calculate the SNR of WDWDs and, in particular, apply a custom noise model that combines the LISA sensitivity curve from \citet{Robson+2019} with a new fit for the Galactic confusion noise based on their WDWD population.
 
 \lw{} can be installed with pip or obtained from the GitHub repository \href{https://github.com/TeamLEGWORK/LEGWORK}{\faGithub}\footnote{\url{https://github.com/TeamLEGWORK/LEGWORK}}. All examples shown in this paper and code to reproduce the figures are available in the repository. Instructions for installation and basic usage are provided in the online documentation\footnote{\url{https://legwork.readthedocs.io/en/latest/}} which contain the most up-to-date instructions.
 
@@ -127,7 +115,7 @@ The paper is organised as follows. In Section~\ref{sec:LEGWORK-overview} we give
 
 \section{Package Overview}\label{sec:LEGWORK-overview}
 
-The \lw{} package is composed of seven modules that each focus on a particular aspect of calculations useful for gravitational wave sources that are detectable by space-based detectors. In Fig.~\ref{fig:package_overview}, we illustrate the general structure of the package with each of its modules. The \texttt{source} module is the central module of the package and provides an simple interface to the functions in the rest of the modules. For more complex analyses, users may want to interact directly with individual modules, particularly those in the top row of Fig.~\ref{fig:package_overview} as they comprise the core functionality of \lw{}. Below we explain the capabilities of each module in detail.
+The \lw{} package is composed of seven modules that each focus on a particular aspect of calculations useful for gravitational wave sources that are detectable by space-based detectors. In Figure~\ref{fig:package_overview}, we illustrate the general structure of the package with each of its modules. The \texttt{source} module is the central module of the package and provides an simple interface to the functions in the rest of the modules. For more complex analyses, users may want to interact directly with individual modules, particularly those in the top row of Figure~\ref{fig:package_overview} as they comprise the core functionality of \lw{}. Below we explain the capabilities of each module in detail.
 
 \begin{figure}
     \centering
@@ -136,19 +124,19 @@ The \lw{} package is composed of seven modules that each focus on a particular a
     \label{fig:package_overview}
 \end{figure}
 
-\lwModLink{evol} handles the orbital evolution of a binary due to the emission of gravitational waves. It includes functions for computing the merger times of both circular and eccentric binaries. In addition, you can use this module to evolve binary orbit parameters forward in time with any number or arrangement of timesteps. We discuss the relevant equations in Sec.~\ref{sec:deriv_evol}.
+\lwModLink{evol} handles the orbital evolution of a binary due to the emission of gravitational waves. It includes functions for computing the merger times of both circular and eccentric binaries. In addition, you can use this module to evolve binary orbit parameters forward in time with any number or arrangement of timesteps. We discuss the relevant equations in Section~\ref{sec:deriv_evol}.
 
-\lwModLink{strain} contains two functions that compute a binary's gravitational wave strain and characteristic strain amplitude respectively. Each of these functions is capable of computing the strain for an array of binaries at any number of timesteps and evaluated at any number of frequency harmonics. We discuss the relevant equations in Sec.~\ref{sec:deriv_strain}.
+\lwModLink{strain} contains two functions that compute a binary's gravitational wave strain and characteristic strain amplitude respectively. Each of these functions is capable of computing the strain for an array of binaries at any number of timesteps and evaluated at any number of frequency harmonics. We discuss the relevant equations in Section~\ref{sec:deriv_strain}.
 
-\lwModLink{psd} is used for evaluating the effective noise power spectral density of a detector at different frequencies. The module currently contains the LISA and TianQin sensitivity curves that can be tweaked by adjusting parameters such as the observation time, confusion noise and even the arm length. Additionally, this module allows the user to specify a custom detector sensitivity curve. We discuss the relevant equations in Sec.~\ref{sec:deriv_psd}.
+\lwModLink{psd} is used for evaluating the effective noise power spectral density of a detector at different frequencies. The module currently contains the LISA and TianQin sensitivity curves that can be tweaked by adjusting parameters such as the observation time, confusion noise and even the arm length. Additionally, this module allows the user to specify a custom detector sensitivity curve. We discuss the relevant equations in Section~\ref{sec:deriv_psd}.
 
-\lwModLink{snr} uses the functions in \texttt{evol}, \texttt{strain} and \texttt{psd} to compute the signal-to-noise ratio of sources. It contains four functions that cover the permutations of whether a source is circular or eccentric and stationary in frequency space on the timescale of the mission or evolving. We discuss the relevant equations in Sec.~\ref{sec:deriv_snr}.
+\lwModLink{snr} uses the functions in \texttt{evol}, \texttt{strain} and \texttt{psd} to compute the signal-to-noise ratio of sources. It contains four functions that cover the permutations of whether a source is circular or eccentric and stationary in frequency space on the timescale of the mission or evolving. We discuss the relevant equations in Section~\ref{sec:deriv_snr}.
 
 \lwModLink{visualisation} contains several wrappers for plotting 1- and 2-dimensional distributions with histograms, scatter plots, and kernel density estimator (KDE) plots in order to quickly analyse a collection of sources. In addition, it provides functions for plotting sources directly onto a sensitivity curve.
 
 \lwModLink{source} provides a direct and simple interface to the functions in other modules through the \texttt{Source} Class. You can instantiate this Class with an array of sources and use it compute their strains or signal-to-noise ratios directly. Moreover, depending on the user's choice of allowed gravitational wave luminosity error, the Class dynamically decides on the number of frequency harmonics needed to capture the full signal of each binary and at what eccentricity to no longer consider a binary circular. This Class also provides a quick means of evolving the sources, visualising the parameters of each source and allows you to plot the binaries on the sensitivity curve.
 
-\lwModLink{utils} is a collection of miscellaneous utility functions mainly consisting of conversions between variables as well as constants and expressions from \citet{Peters+1964}. We discuss the relevant equations in Sec.~\ref{sec:deriv_utils}.
+\lwModLink{utils} is a collection of miscellaneous utility functions mainly consisting of conversions between variables as well as constants and expressions from \citet{Peters+1964}. We discuss the relevant equations in Section~\ref{sec:deriv_utils}.
 
 To ensure stability with physical units, all quantities included in \lw{} use the \texttt{astropy.units} module \citep{AstropyCollaboration+2013, AstropyCollaboration+2018}. This means that all inputs to \lw{} can be given in the units of the user's choice and will be automatically converted. Furthermore, all of the source code in \lw{} is fully tested with continuous integration in the \lw{} GitHub repository. We employ several unit tests to ensure consistency between each of the use cases described below. For example, we require that the SNR calculation for circular and stationary binaries produces consistent output whether \lw{} uses the stationary and circular approximations or not. Similarly, we verify that the antenna patterns described below produce the expected values when averaged over source positions, inclinations, and polarisations.
 
@@ -156,7 +144,7 @@ To ensure stability with physical units, all quantities included in \lw{} use th
 
 We developed \lw{} with an emphasis on increasing the efficiency of these computations in order to make simulations of large populations of systems tractable. We ensured that the entirety of \lw{} is vectorised and thus scales well with larger populations. In addition, we made a several specific optimisations to further increase the speed of calculations.
 
-Firstly, we found that the runtime of calculating strains and SNRs for large populations of sources was mainly limited by the computation of (1) the relative gravitational-wave power in each harmonic for eccentric systems (see Eq.~\ref{eq:g(n,e)}) (2) the sensitivity curve of the given detector. Therefore, in order to significantly reduce the runtime of strain and SNR computations, by default \lw{} automatically interpolates these functions upon instantiation of any \texttt{Source} class with a large number of sources. Thereafter all functions use the tabulated values instead of calculating them exactly.
+Firstly, we find that the runtime of calculating strains and SNRs for large populations of sources is mainly limited by the computation of (1) the relative gravitational-wave power in each harmonic for eccentric systems (see Eq.~\ref{eq:g(n,e)}) (2) the sensitivity curve of the given detector. Therefore, in order to significantly reduce the runtime of strain and SNR computations, by default \lw{} automatically interpolates these functions upon instantiation of any \texttt{Source} class with a large number of sources. Thereafter all functions use the tabulated values instead of calculating them exactly.
 
 In certain cases one can apply approximations in place of the general SNR calculations. Although it is possible to use each of these approximations directly through the \lwModLink{snr} module, the \lwModLink{source} module will automatically apply the most appropriate function for each individual source. \lw{} dynamically classifies each source as one of four types, which cover the permutations of whether a binary is effectively circular or eccentric and whether or not it is stationary in frequency space on the timescale of the LISA mission. Then when computing the SNR, it applies a different function to each type of the source. This avoids computing unnecessary, time intensive integrals.
 
@@ -382,7 +370,7 @@ and
 \end{equation}
 The orbital motion of LISA smears the source frequency by roughly $10^{-4}\,\rm{mHz}$ due to the antenna pattern changing as the detector orbits, the Doppler shift from the motion, and the phase modulation from the $+$ and $\cross$ polarisations in the antenna pattern. Generally, the modulation reduces the strain amplitude because the smearing in frequency reduces the amount of signal build up at the true source frequency.
 
-We note that since the orbit averaging is carried out in Fourier space, this requires the frequency to be monochromatic and thus is only implemented in \lw{} for quasi-circular binaries (as eccentric systems emit at many frequency harmonics). We also note that since the majority of the calculations in \lw{} are carried out for the full position, polarisation, and inclination averages, we place a pre-factor of $5/4$ on the amplitude modulation in the software implementation to undo the factor of $4/5$ which arises from the averaging of Equations~\ref{eq:response_fplus} and \ref{eq:response_fcross}.
+We note that since the orbit averaging is carried out in Fourier space, this requires the frequency to be monochromatic and thus is only implemented in \lw{} for quasi-circular binaries (as eccentric systems emit at many frequency harmonics).
 
 \subsection{Sensitivity Curves {\normalfont (\texorpdfstring{\lwModLink{psd}}{psd})}}\label{sec:deriv_psd}
 
@@ -619,7 +607,7 @@ This can be generalised to a population of many binary systems with ease. Instea
 \begin{figure*}[htb]
     \centering
     \includegraphics[width=\textwidth]{figures/horizon_distance.pdf}
-    \caption{The horizon distance for circular stellar mass binaries in a four-year LISA mission. The filled contours indicate the horizon distance for different orbital frequencies and chirp masses. We add white dotted contours at $8, 50, 800 \unit{kpc}$ and $40 \unit{Mpc}$ to highlight the distances to the centre of the Milky Way, the Magellanic Clouds, the Andromeda galaxy and the nearest ground-based gravitational wave detection (GW170817, \citealp{Abbott+2017_GW170817}) respectively. The diagonal line black line shows the frequencies and chirp masses at which the merger time is equal to the observation time. This line emphasises the sharp contrast for the horizon distance for binaries that merge before the LISA mission finishes observing (to the right of the line). The horizontal black lines indicate the approximate location of some common double compact object types on this plot, with the assumed masses labelled below in solar masses.}
+    \caption{The horizon distance for circular, stellar-mass binaries in a 4-year LISA mission. The filled contours indicate the horizon distance for different orbital frequencies and chirp masses. We add white dotted contours at $8, 50, 800 \unit{kpc}$ and $40 \unit{Mpc}$ to highlight the distances to the centre of the Milky Way, the Magellanic Clouds, the Andromeda galaxy and the nearest ground-based gravitational wave detection (GW170817, \citealp{Abbott+2017_GW170817}) respectively. The diagonal black line shows the frequencies and chirp masses at which the merger time is equal to the observation time. This line emphasises the sharp contrast for the horizon distance for binaries that merge before the LISA mission finishes observing (to the right of the line). The horizontal black lines indicate the approximate location of some common double compact object types on this plot, with the assumed masses labelled below in solar masses.}
     \label{fig:horizon_distance}
 \end{figure*}
 
@@ -632,31 +620,29 @@ Let us compute the horizon distance for a grid of chirp masses and orbital frequ
 \end{equation}
 where $\rho(D)$ is the signal-to-noise ratio as some distance $D$ and $\rho_{\rm detect}$ is the threshold above which we consider a source to be detectable. For the purpose of this example we will set $\rho_{\rm detect} = 7$. We can then, as a function of chirp mass and frequency, determine the maximum distance for which the source of interest is detected based on this SNR threshold.
 
-This can be most efficiently accomplished using \lw{}'s source class. Although the source class only reads in one-dimensional lists of sources, one can flatten a grid of chirp masses and orbital frequencies to make the input work. \lw{} can then compute the merger times and signal-to-noise ratio of each source with only two lines of code. These results can then be reshaped to match the original grid of chirp masses and frequencies.
-
-We convert these SNRs to horizon distances using Eq.~\ref{eq:snr_to_hor_dist} and plot the result in Figure~\ref{fig:horizon_distance}. The shape of the LISA sensitivity curve is clearly reflected in the horizon distance. This is because circular sources only emit at a single frequency and thus every feature in the sensitivity curve has a strong effect on the SNR (and therefore horizon distance) for circular sources. We also see that once the merger time of a source is shorter than the LISA mission length (shown by the black dotted line), the horizon distance sharply decreases. This is because if a source merges before the LISA mission concludes, it has less time to accumulate signal and thus has a lower SNR and horizon distance.
+This can be most efficiently accomplished using \lw{}'s source class, since \lw{} can then compute the merger times and signal-to-noise ratio of each source with only two lines of code. We convert the SNRs to horizon distances using Eq.~\ref{eq:snr_to_hor_dist} and plot the result in Figure~\ref{fig:horizon_distance}. The shape of the LISA sensitivity curve is clearly reflected in the horizon distance. This is because circular sources only emit at a single frequency and thus every feature in the sensitivity curve has a strong effect on the SNR (and therefore horizon distance) for circular sources. We also see that once the merger time of a source is shorter than the LISA mission length (shown by the black dotted line), the horizon distance sharply decreases. This is because if a source merges before the LISA mission concludes, it has less time to accumulate signal and thus has a lower SNR and horizon distance.
 
 One can use Figure~\ref{fig:horizon_distance} to estimate the horizon distance for any circular source of interest. To illustrate this, we add solid black lines to indicate the typical chirp masses of some possible stellar mass gravitational wave sources as well as white dotted lines to show the distances to nearby galaxies as well as the nearest ground-based gravitational wave detection (GW170817, \citealp{Abbott+2017_GW170817}). For example, we see that a circular NSNS with an orbital frequency greater than a mHz is detectable in the Magellanic clouds.
 
 \subsection{The role of eccentricity\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/TheRoleofEccentricity.html}}{}}\label{sec:eccentricity_role}
 
-The role of eccentricity is important to consider in the detection of gravitational waves with LISA and other space-based detectors, as sources can still have significant eccentricity during their inspiral phase. A high eccentricity has two major effects on the SNR of a gravitational wave source in LISA and we can investigate this using \lw{}.
+The role of eccentricity is important to consider in the detection of gravitational waves with LISA and other space-based detectors, as sources can still have significant eccentricity during their inspiral phase. A high eccentricity has two major effects on the SNR of a gravitational wave source in LISA and we can investigate these effects using \lw{}.
 
 Let's consider three hypothetical systems that are identical apart from their eccentricities, $e_i$.
 \begin{align*}{}
     m_1 &= m_2 = 0.6 \unit{M_{\odot}}, f_{\rm orb} = 1.5 \unit{mHz}, d = 15 \unit{kpc}, \\
     e_i &= \{0.0, 0.6, 0.9 \},
 \end{align*}
-Using \lw{} to calculate their signal-to-noise ratios (for a 4-year LISA mission), $\rho_i$, we find
+Using \lw{} to calculate their signal-to-noise ratios in a 4-year LISA mission, $\rho_i$, we find
 \begin{equation*}{}
-    \rho_i = \{ 31.7, 50.2, 38.8 \}
+    \rho_i = \{ 31.7, 50.2, 38.8 \}.
 \end{equation*}
 
-We see two effects in the signal-to-noise ratio here. First, increasing the eccentricity from essentially circular to $e = 0.6$ results in a higher signal-to-noise ratio ($\rho=31.7 \to \rho=50.2$). This is because an eccentric binary has enhanced energy emission via gravitational waves \citep{Peters+1963}. This means that an eccentric binary will not only inspiral faster than an otherwise identical circular binary, but also will always produce a stronger gravitational wave strain. The enhancement factor and its exact dependence on eccentricity is discussed in more detail Section~\ref{sec:derivations} (specifically Eq.~\ref{eq:eccentricity_enhancement_factor}).
+We see two effects in the signal-to-noise ratio here. First, increasing the eccentricity from essentially circular to $e = 0.6$ results in a higher signal-to-noise ratio ($\rho=31.7 \to \rho=50.2$). This is because an eccentric binary has enhanced energy emission via gravitational waves \citep{Peters+1963}. This means that an eccentric binary will not only inspiral faster than an otherwise identical circular binary, but also will always produce a stronger gravitational wave strain. We discuss the enhancement factor and its exact dependence on eccentricity in more detail in Section~\ref{sec:derivations} (see specifically Eq.~\ref{eq:eccentricity_enhancement_factor}).
 
-The second effect is more intriguing. We see that increasing the eccentricity from $e = 0.6$ to $e = 0.9$ results in a relative \textit{decrease} in SNR ($\rho=50.2 \to \rho=38.8$). The reason for this is that eccentric binaries emit gravitational waves at many harmonic frequencies (unlike circular binaries, which emit predominantly twice the orbital frequency). This leads to the gravitational wave signal being diluted over many frequencies higher than the orbital frequency, where the higher the eccentricity, the more harmonics are required to capture all of the gravitational luminosity \citep[see Fig.\,3 of][]{Peters+1963}. Therefore, if the eccentricity is too high, the majority of the signal may be emitted at a frequency to which LISA is less sensitive.
+The second effect is more intriguing. We see that increasing the eccentricity from $e = 0.6$ to $e = 0.9$ results in a relative \textit{decrease} in SNR ($\rho=50.2 \to \rho=38.8$). The reason for this is that eccentric binaries emit gravitational waves at many harmonic frequencies (unlike circular binaries, which emit predominantly twice the orbital frequency). This leads to the gravitational wave signal being diluted over many frequencies higher than the orbital frequency, where the higher the eccentricity, the more harmonics are required to capture all of the gravitational luminosity \citep[see Figure~3 of][]{Peters+1963}. Therefore, if the eccentricity is too high, the majority of the signal may be emitted at a frequency to which LISA is less sensitive.
 
-We can illustrate this point with \lw{} by calculating the SNR at each individual harmonic using the \lwModLink{snr} module. We plot this distribution of signal over different harmonics with the LISA sensitivity curve overlaid in Fig.~\ref{fig:role_eccentricity} using \lw{}'s \lwModLink{visualisation} module. A point is plotted for each harmonic of each source that has an SNR greater than unity and such that its height above the sensitivity curve corresponds to its SNR.
+We can illustrate this point with \lw{} by calculating the SNR at each individual frequency harmonic using the \lwModLink{snr} module. We plot this distribution of signal over different frequency harmonics with the LISA sensitivity curve overlaid in Figure~\ref{fig:role_eccentricity} using \lw{}'s \lwModLink{visualisation} module. A point is plotted for each harmonic of each source that has an SNR greater than unity and such that its height above the sensitivity curve corresponds to its SNR.
 
 \begin{figure}[tb]
     \centering
@@ -665,9 +651,11 @@ We can illustrate this point with \lw{} by calculating the SNR at each individua
     \label{fig:role_eccentricity}
 \end{figure}
 
-From Fig.~\ref{fig:role_eccentricity}, we can better understand why a source with $e = 0.9$ has a lower SNR than the same source with $e = 0.6$. From the dotted lines, we can note that the signal from the $e = 0.9$ source is concentrated at a frequency of around $4 \times 10^{-2} \unit{Hz}$. The LISA sensitivity at this point is much weaker than the $6 \times 10^{-3} \unit{Hz}$ at which the $e =0.6$ source is concentrated. Therefore, although the strain from a more eccentric binary is stronger, the SNR is lower due to the increased noise in the LISA detector.
+From Figure~\ref{fig:role_eccentricity}, we can better understand why a source with $e = 0.9$ has a lower SNR than the same source with $e = 0.6$. From the dotted lines, we can note that the signal from the $e = 0.9$ source is concentrated at a frequency of around $40 \unit{mHz}$. The LISA sensitivity at this point is much weaker than the $6 \unit{mHz}$ at which the $e =0.6$ source is concentrated. Therefore, although the strain from a more eccentric binary is stronger, the SNR is lower due to the increased noise in the LISA detector.
 
 Overall, we can therefore conclude that for LISA sources of this nature, higher eccentricity will produce more detectable binaries only if the orbital frequency is not already at or above the minimum of the LISA sensitivity curve.
+
+Another consideration for more massive binaries is whether the increased eccentricity will cause the binary to merge before the mission ends, which would cause a significant decrease in signal-to-noise ratio. We can also use \lw{} to find how the merger time of a source varies with frequency and eccentricity over a grid of sources.
 
 \begin{figure}[htb]
     \centering
@@ -676,45 +664,7 @@ Overall, we can therefore conclude that for LISA sources of this nature, higher 
     \label{fig:merger_time}
 \end{figure}
 
-Another consideration for more massive binaries is whether the increased eccentricity will cause the binary to merge before the mission ends, which would cause a significant decrease in signal-to-noise ratio. We can also use \lw{} to find how the merger time of a source varies with frequency and eccentricity over a grid of sources.
-
-We plot the results of this calculation in Figure~\ref{fig:merger_time}. This plot shows that for most eccentricities the merger is time is largely determined by the orbital frequency. However, for high eccentricities ($e > 0.8$), the eccentricity significantly reduces the merger time. Additionally, we can see that any binary that is to the right of the dashed line on this plot at the start of a 4-year LISA mission, would merge before the mission ended.
-
-\subsection{LISA verification binaries\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/VerificationBinaries.html}}{}}
-\citet{Kupfer+2018} presents the LISA verification binaries, a collection of known binary systems that have gravitational-waves that are strong enough to be detected by LISA. In \lw{}, we provide easy access to this data through the \href{https://legwork.readthedocs.io/en/latest/api/legwork.source.VerificationBinaries}{\color{\lwColour}{\texttt{VerificationBinaries}}} class, which is a subclass of \href{https://legwork.readthedocs.io/en/latest/api/legwork.source.Source}{\color{\lwColour}{\texttt{Source}}}. This means that the class works identically to \texttt{source} but has the verification binary data preloaded into the variables. In addition to the base variables, this class also includes the designation of each binary and the SNR that \citet{Kupfer+2018} computed\footnote{We note that this SNR differs from the SNR that \lw{} gives for each binary. This is because \citet{Kupfer+2018} run a full LISA simulation for these binaries, whilst we follow the orbit-averaged approach (see Section~\ref{sec:amplitude_mod}), since the former would be intractable for any large number of sources.}.
-
-As an example of how you could use this data, we use the \texttt{VerificationBinaries} class to plot the sources on the LISA sensitivity curve with the SNR calculated by \citet{Kupfer+2018} for a 4-year LISA mission and colour the binaries by their primary mass. We see that the verification binaries tend to be detected between $1$-$10 \unit{mHz}$ and have masses estimated to be between $0.1$-$1 \unit{M_{\odot}}$.
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=\columnwidth]{verification_binaries_on_sc.pdf}
-    \caption{The LISA verification binaries from \citet{Kupfer+2018} plotted on the LISA sensitivity curve \citep{Robson+2019} for a 4-year LISA mission. Points are coloured by their primary mass.}
-    \label{fig:verification_binaries_on_sc}
-\end{figure}
-
-\subsection{Comparing gravitational wave detectors\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/CompareSensitivityCurves.html}}{}}
-
-It may also be useful to consider how changing the specifications of the LISA detector, or using a different detector entirely, could affect the SNR of a particular source. \lw{} is capable of adjusting the LISA mission specifications or using a different sensitivity curve and thus we can use it to explore these differences.
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=\columnwidth]{figures/detector_sc_compare.pdf}
-    \caption{The strain spectral density of the LISA detector with different specifications \citep{Robson+2019} and the TianQin detector \citep{Huang+2020}. We show the LISA curve for three different mission lengths and once with an approximate response function.}
-    \label{fig:detector_sc_compare}
-\end{figure}
-
-As a first step, we can use \lw{} to plot a series of sensitivity curves in Figure~\ref{fig:detector_sc_compare}. We show the LISA sensitivity curve for the default 4 year mission length but also illustrate how the curve changes for shorter mission lengths. At 0.5 and 2 years, we see a stronger noise level around $3 \unit{mHz}$ as a result of the increased Galactic confusion noise. This noise decreases with increasing mission length since more individual foreground sources can be resolved and thus removed from the confusion noise. We also see that using an approximated response function smooths out the sensitivity curve at higher frequencies. Finally, the TianQin curve is higher than the 4 year LISA curve until around $5 \unit{mHz}$, beyond which it has a lower noise level.
-
-Although comparing the sensitivity curves would suffice for a stationary and circular source (since it would remain at a single frequency), \lw{} can also be used to see how the relative SNR between two detectors changes over a range of eccentricities and frequencies.
-
-Using \lw{}, we can compute the SNR of a grid of sources (spanning a range of frequencies and eccentricities) for both detectors. In Figure~\ref{fig:detector_snr_ratio}, we show the ratio of the SNR in LISA to the SNR in TianQin. This plot shows that for circular binaries, the SNR of the source in LISA is stronger up to an orbital frequency of approximately $2.5 \unit{mHz}$, beyond which the SNR of the source is stronger in TianQin. This transition frequency becomes lower with increasing eccentricity as one would expect since eccentric sources emit more at higher harmonics and thus higher frequencies.
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=\columnwidth]{figures/detector_snr_ratio.pdf}
-    \caption{The ratio of the SNR in LISA (for a four year mission) to the SNR in TianQin. The dashed line indicates the transition at which the SNR is equal in both detectors. We annotate the regions in which either detector has a higher SNR and also annotate the mass and distance of each source in the grid.}
-    \label{fig:detector_snr_ratio}
-\end{figure}
+We plot the results of this calculation in Figure~\ref{fig:merger_time}. This plot shows that, for most eccentricities, the merger time is largely determined by the orbital frequency. However, for high eccentricities ($e > 0.8$), the eccentricity leads to a significant reduction in the merger time. Additionally, we can see that any binary that is to the right of the dashed line on this plot at the start of a 4-year LISA mission, would merge before the mission ended. Therefore, if increasing a binary's eccentricity moved it to the right of this line, its SNR will decrease significantly.
 
 \subsection{Track SNR of a binary over time\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/SNROverTime.html}}{}}
 
@@ -727,9 +677,9 @@ Let's consider a binary with the following initial parameters
 \end{align*}
 and use \lw{} to evolve the system until 100 years before its merger with 1000 linearly spaced timesteps, recording the eccentricity and frequency at each timestep.
 
-We plot this evolution of the eccentricity and frequency in the top two panels of Fig.~\ref{fig:snr_over_time} as a function of the time before the merger. We see that the binary circularises and increases its orbital frequency as it inspirals as we would expect.
+We plot this evolution of the eccentricity and frequency in the top two panels of Figure~\ref{fig:snr_over_time} as a function of the time before the merger. We see that the binary circularises and increases its orbital frequency as it inspirals as we would expect.
 
-To take this a step further, we can consider the binary at each timestep to be a separate source with the current eccentricity and frequency. It is then trivial to use \lw{} to calculate the SNR for each of these `sources' and thus attain the SNR evolution, which we plot in the last panel of Fig.~\ref{fig:snr_over_time}.
+To take this a step further, we can consider the binary at each timestep to be a separate source with the current eccentricity and frequency. It is then trivial to use \lw{} to calculate the SNR for each of these `sources' and thus attain the SNR evolution, which we plot in the last panel of Figure~\ref{fig:snr_over_time}.
 
 We see that the SNR increases monotonically over time and sharply increases as the binary approaches its merger. Around $1 \unit{Myr}$ before the merger, the SNR reaches the detection threshold and thus could then be seen by a 4-year LISA mission.
 
@@ -738,8 +688,46 @@ Note that \lw{} could also be used in this way to find the SNR of any system in 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\columnwidth]{figures/snr_over_time.pdf}
-    \caption{The evolution of a binary system's eccentricity (top), orbital frequency (middle) and signal-to-noise ratio (bottom). Each panel is annotated with the constant parameters of the system. The SNR is calculated for a 4-year LISA mission. We annotate in  a line the bottom panel at $\mathrm{SNR} = 7$ to highlight the moment at which the source becomes detectable.}
+    \caption{The evolution of a binary system's eccentricity (top), orbital frequency (middle) and SNR (bottom). Each panel is annotated with the constant parameters of the system. The SNR is calculated for a 4-year LISA mission. We annotate in  a line the bottom panel at $\mathrm{SNR} = 7$ to highlight the moment at which the source becomes detectable.}
     \label{fig:snr_over_time}
+\end{figure}
+
+\subsection{Comparing gravitational wave detectors\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/CompareSensitivityCurves.html}}{}}
+
+It may also be useful to consider how changing the specifications of the LISA detector, or using a different detector entirely, could affect the SNR of a particular source. \lw{} is capable of adjusting the LISA mission specifications or using a different sensitivity curve and thus we can use it to explore these differences.
+
+As a first step, we can use \lw{} to plot a series of sensitivity curves in Figure~\ref{fig:detector_sc_compare}. We show the LISA sensitivity curve for the default 4 year mission length but also illustrate how the curve changes for shorter mission lengths. At 0.5 and 2 years, we see a stronger noise level around $3 \unit{mHz}$ as a result of the increased Galactic confusion noise. This noise decreases with increasing mission length since more individual foreground sources can be resolved and thus removed from the confusion noise. We also see that using an approximated response function smooths out the sensitivity curve at higher frequencies. Finally, the TianQin curve is higher than the 4 year LISA curve until around $5 \unit{mHz}$, beyond which it has a lower noise level.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/detector_sc_compare.pdf}
+    \caption{The strain spectral density of the LISA detector with different specifications \citep{Robson+2019} and the TianQin detector \citep{Huang+2020}. We show the LISA curve for three different mission lengths and once with an approximate response function.}
+    \label{fig:detector_sc_compare}
+\end{figure}
+
+Although comparing the sensitivity curves would suffice for a stationary and circular source (since it would remain at a single frequency), \lw{} can also be used to see how the relative SNR between two detectors changes over a range of eccentricities and frequencies.
+
+Using \lw{}, we can compute the SNR of a grid of sources (spanning a range of frequencies and eccentricities) for both detectors. In Figure~\ref{fig:detector_snr_ratio}, we show the ratio of the SNR in LISA to the SNR in TianQin. This plot shows that for circular binaries, the SNR of the source in LISA is stronger up to an orbital frequency of approximately $2.5 \unit{mHz}$, beyond which the SNR of the source is stronger in TianQin. This transition frequency becomes lower with increasing eccentricity as one would expect since eccentric sources emit more at higher harmonics and thus higher frequencies.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/detector_snr_ratio.pdf}
+    \caption{The ratio of the SNR in LISA (for a 4-year mission) to the SNR in TianQin. The dashed line indicates the transition at which the SNR is equal in both detectors. We annotate the regions in which either detector has a higher SNR and also annotate the mass and distance of each source in the grid.}
+    \label{fig:detector_snr_ratio}
+\end{figure}
+
+\subsection{LISA verification binaries\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/VerificationBinaries.html}}{}}
+\citet{Kupfer+2018} presents the LISA verification binaries, a collection of known binary systems that have gravitational-waves that are strong enough to be detected by LISA. In \lw{}, we provide easy access to this data through the \href{https://legwork.readthedocs.io/en/latest/api/legwork.source.VerificationBinaries}{\color{\lwColour}{\texttt{VerificationBinaries}}} class, which is a subclass of \href{https://legwork.readthedocs.io/en/latest/api/legwork.source.Source}{\color{\lwColour}{\texttt{Source}}}. This means that the class works identically to \texttt{Source}, but it has the verification binary data (such as their masses and orbital frequencies) pre-loaded into the variables.
+
+In addition to the base variables, this class also includes the designation of each binary and the SNR that \citet{Kupfer+2018} computed. We note that this SNR differs from the SNR that \lw{} gives for each binary. This is because \citet{Kupfer+2018} run a full, detailed LISA simulation for these binaries, whilst we follow the orbit-averaged approach (see Section~\ref{sec:amplitude_mod}), since the former would be intractable for any large number of sources.
+
+As an example of how you could use this data, we use the \texttt{VerificationBinaries} class to plot the sources on the LISA sensitivity curve with the SNR calculated by \citet{Kupfer+2018} for a 4-year LISA mission and colour the binaries by their primary mass. We see that the verification binaries tend to be detected with frequencies between $1$-$10 \unit{mHz}$ and have masses estimated to be between $0.1$-$1 \unit{M_{\odot}}$.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\columnwidth]{verification_binaries_on_sc.pdf}
+    \caption{The LISA verification binaries from \citet{Kupfer+2018} plotted on the LISA sensitivity curve \citep{Robson+2019} for a 4-year LISA mission. Points are coloured by their primary mass.}
+    \label{fig:verification_binaries_on_sc}
 \end{figure}
 
 \section{Conclusion \& Summary}\label{sec:summary}
