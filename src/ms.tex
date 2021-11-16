@@ -622,7 +622,7 @@ Let us compute the horizon distance for a grid of chirp masses and orbital frequ
 \end{equation}
 where $\rho(D)$ is the signal-to-noise ratio as some distance $D$ and $\rho_{\rm detect}$ is the threshold above which we consider a source to be detectable. For the purpose of this example we will set $\rho_{\rm detect} = 7$. We can then, as a function of chirp mass and frequency, determine the maximum distance for which the source of interest is detected based on this SNR threshold.
 
-This can be most efficiently accomplished using \lw{}'s source class, since \lw{} can then compute the merger times and signal-to-noise ratio of each source with only two lines of code. We convert the SNRs to horizon distances using Eq.~\ref{eq:snr_to_hor_dist} and plot the result in Figure~\ref{fig:horizon_distance}. The shape of the LISA sensitivity curve is clearly reflected in the horizon distance. This is because circular sources only emit at a single frequency and thus every feature in the sensitivity curve has a strong effect on the SNR (and therefore horizon distance) for circular sources. We also see that once the merger time of a source is shorter than the LISA mission length (shown by the black dotted line), the horizon distance sharply decreases. This is because if a source merges before the LISA mission concludes, it has less time to accumulate signal and thus has a lower SNR and horizon distance.
+This can be most efficiently accomplished using \lw{}'s \href{https://legwork.readthedocs.io/en/latest/api/legwork.source.Source}{\color{\lwColour}{\texttt{Source}}} class, since \lw{} can then compute the merger times and signal-to-noise ratio of each source with only two lines of code. We convert the SNRs to horizon distances using Eq.~\ref{eq:snr_to_hor_dist} and plot the result in Figure~\ref{fig:horizon_distance}. The shape of the LISA sensitivity curve is clearly reflected in the horizon distance. This is because circular sources only emit at a single frequency and thus every feature in the sensitivity curve has a strong effect on the SNR (and therefore horizon distance) for circular sources. We also see that once the merger time of a source is shorter than the LISA mission length (shown by the black dotted line), the horizon distance sharply decreases. This is because if a source merges before the LISA mission concludes, it has less time to accumulate signal and thus has a lower SNR and horizon distance.
 
 One can use Figure~\ref{fig:horizon_distance} to estimate the horizon distance for any circular source of interest. To illustrate this, we add solid black lines to indicate the typical chirp masses of some possible stellar mass gravitational wave sources as well as white dotted lines to show the distances to nearby galaxies as well as the nearest ground-based gravitational wave detection (GW170817, \citealp{Abbott+2017_GW170817}). For example, we see that a circular NSNS with an orbital frequency greater than a mHz is detectable in the Magellanic clouds.
 
@@ -668,39 +668,13 @@ Another consideration for more massive binaries is whether the increased eccentr
 
 We plot the results of this calculation in Figure~\ref{fig:merger_time}. This plot shows that, for most eccentricities, the merger time is largely determined by the orbital frequency. However, for high eccentricities ($e > 0.8$), the eccentricity leads to a significant reduction in the merger time. Additionally, we can see that any binary that is to the right of the dashed line on this plot at the start of a 4-year LISA mission, would merge before the mission ended. Therefore, if increasing a binary's eccentricity moved it to the right of this line, its SNR will decrease significantly.
 
-\subsection{Track SNR of a binary over time\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/SNROverTime.html}}{}}
-
-As a binary inspirals its orbital frequency and eccentricity change and this in turn affects the SNR of the binary. For this use case we will demonstrate how \lw{} can be used to track the evolution of these parameters and pinpoint the moment at which a binary becomes detectable.
-
-Let's consider a binary with the following initial parameters
-\begin{align*}
-    m_1 &= m_2 = 15 \unit{M_{\odot}},\ d = 20 \unit{kpc},\\
-    f_{\rm orb, i} &= 3 \times 10^{-5} \unit{Hz},\ e_i = 0.5,
-\end{align*}
-and use \lw{} to evolve the system until 100 years before its merger with 1000 linearly spaced timesteps, recording the eccentricity and frequency at each timestep.
-
-We plot this evolution of the eccentricity and frequency in the top two panels of Figure~\ref{fig:snr_over_time} as a function of the time before the merger. We see that the binary circularises and increases its orbital frequency as it inspirals as we would expect.
-
-To take this a step further, we can consider the binary at each timestep to be a separate source with the current eccentricity and frequency. It is then trivial to use \lw{} to calculate the SNR for each of these `sources' and thus attain the SNR evolution, which we plot in the last panel of Figure~\ref{fig:snr_over_time}.
-
-We see that the SNR increases monotonically over time and sharply increases as the binary approaches its merger. Around $1 \unit{Myr}$ before the merger, the SNR reaches the detection threshold and thus could then be seen by a 4-year LISA mission.
-
-Note that \lw{} could also be used in this way to find the SNR of any system in which the orbital evolution is known. Thus for a triple system or a binary experiencing gas drag (as long as the evolution of the eccentricity and orbital frequency is known) \lw{} is entirely capable of calculating the SNR evolution.
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=\columnwidth]{figures/snr_over_time.pdf}
-    \caption{The evolution of a binary system's eccentricity (top), orbital frequency (middle) and SNR (bottom). Each panel is annotated with the constant parameters of the system. The SNR is calculated for a 4-year LISA mission. We annotate in  a line the bottom panel at $\mathrm{SNR} = 7$ to highlight the moment at which the source becomes detectable.}
-    \label{fig:snr_over_time}
-\end{figure}
-
 \subsection{Comparing gravitational wave detectors\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/CompareSensitivityCurves.html}}{}}
 
 It may also be useful to consider how changing the specifications of the LISA detector, or using a different detector entirely, could affect the SNR of a particular source. \lw{} is capable of adjusting the LISA mission specifications or using a different sensitivity curve and thus we can use it to explore these differences.
 
 As a first step, we can use \lw{} to plot a series of sensitivity curves in Figure~\ref{fig:detector_sc_compare}. We show the LISA sensitivity curve for the default 4 year mission length but also illustrate how the curve changes for shorter mission lengths. At 0.5 and 2 years, we see a stronger noise level around $3 \unit{mHz}$ as a result of the increased Galactic confusion noise. This noise decreases with increasing mission length since more individual foreground sources can be resolved and thus removed from the confusion noise. We also see that using an approximated response function smooths out the sensitivity curve at higher frequencies. Finally, the TianQin curve is higher than the 4 year LISA curve until around $5 \unit{mHz}$, beyond which it has a lower noise level.
 
-\begin{figure}[htb]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=\columnwidth]{figures/detector_sc_compare.pdf}
     \caption{The strain spectral density of the LISA detector with different specifications \citep{Robson+2019} and the TianQin detector \citep{Huang+2020}. We show the LISA curve for three different mission lengths and once with an approximate response function.}
@@ -716,6 +690,32 @@ Using \lw{}, we can compute the SNR of a grid of sources (spanning a range of fr
     \includegraphics[width=\columnwidth]{figures/detector_snr_ratio.pdf}
     \caption{The ratio of the SNR in LISA (for a 4-year mission) to the SNR in TianQin. The dashed line indicates the transition at which the SNR is equal in both detectors. We annotate the regions in which either detector has a higher SNR and also annotate the mass and distance of each source in the grid.}
     \label{fig:detector_snr_ratio}
+\end{figure}
+
+\subsection{Track SNR of a binary over time\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/SNROverTime.html}}{}}
+
+As a binary inspirals its orbital frequency and eccentricity change and this in turn affects the SNR of the binary. For this use case we will demonstrate how \lw{} can be used to track the evolution of these parameters and pinpoint the moment at which a binary becomes detectable.
+
+Let's consider a binary with the following initial parameters
+\begin{align*}
+    m_1 &= m_2 = 15 \unit{M_{\odot}},\ d = 20 \unit{kpc},\\
+    f_{\rm orb, i} &= 3 \times 10^{-5} \unit{Hz},\ e_i = 0.5,
+\end{align*}
+and use \lw{}'s \lwModLink{evol} module to evolve the system until 100 years before its merger with 1000 linearly spaced timesteps, recording the eccentricity and frequency at each timestep.
+
+We plot this evolution of the eccentricity and frequency in the top two panels of Figure~\ref{fig:snr_over_time} as a function of the time before the merger. We see that the binary circularises and increases its orbital frequency as it inspirals as we would expect.
+
+To take this a step further, we can consider the binary at each timestep to be a separate source with the current eccentricity and frequency. It is then trivial to use \lw{} to calculate the SNR for each of these `sources' and thus attain the SNR evolution, which we plot in the last panel of Figure~\ref{fig:snr_over_time}.
+
+We see that the SNR increases monotonically over time and sharply increases as the binary approaches its merger. Around $1 \unit{Myr}$ before the merger, the SNR reaches the detection threshold and thus could then be seen by a 4-year LISA mission.
+
+Note that \lw{} could also be used in this way to find the SNR of any system in which the orbital evolution is known. Thus for a triple system or a binary experiencing gas drag (as long as the evolution of the eccentricity and orbital frequency is known) \lw{} is entirely capable of calculating the SNR evolution.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\columnwidth]{figures/snr_over_time.pdf}
+    \caption{The evolution of a binary system's eccentricity (top), orbital frequency (middle) and SNR (bottom). Each panel is annotated with the constant parameters of the system. The SNR is calculated for a 4-year LISA mission. We annotate in  a line the bottom panel at $\mathrm{SNR} = 7$ to highlight the moment at which the source becomes detectable.}
+    \label{fig:snr_over_time}
 \end{figure}
 
 \subsection{LISA verification binaries\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/VerificationBinaries.html}}{}}
