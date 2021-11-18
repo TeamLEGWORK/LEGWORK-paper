@@ -59,7 +59,7 @@ ratio = ratio.reshape(F.shape)
 
 # make contours of the ratio of SNR
 ratio_cont = ax.contourf(F, E, ratio, cmap="PRGn_r",
-                         norm=TwoSlopeNorm(vcenter=1.0, vmin=0.0, vmax=2.0), levels=20)
+                         norm=TwoSlopeNorm(vcenter=1.0, vmin=0.0, vmax=3.6), levels=20)
 
 for c in ratio_cont.collections:
     c.set_edgecolor("face")
@@ -70,7 +70,7 @@ ax.contour(F, E, ratio, levels=[1.0], colors="grey", linewidths=2.0, linestyles=
 # add a colourbar
 cbar = fig.colorbar(ratio_cont, fraction=2/14, pad=0.02,
                     label=r"$\rho_{\rm LISA} / \rho_{\rm TianQin}$",
-                    ticks=np.arange(0, 2 + 0.5, 0.5))
+                    ticks=np.arange(0, 3.5 + 0.5, 0.5))
 
 # annotate which regions suit each detector
 ax.annotate("LISA stronger", xy=(0.1, 0.53), xycoords="axes fraction", fontsize=0.7 * fs,
