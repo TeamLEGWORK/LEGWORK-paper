@@ -29,7 +29,22 @@ This repository contains all of the code needed to reproduce the [LEGWORK](https
 You can use the badges above to access the main parts of the repo (from the pdf of the paper to the LEGWORK documentation). We also encourage you to look at [`src/figures`](src/figures) which houses the scripts used to generate each of the figures in the paper.
 
 ### Citations
-If you use any of the code or figures from this paper, or use [LEGWORK](https://github.com/TeamLEGWORK/LEGWORK), then please use the following BibTeX citations
+If you use any of the code or figures from this paper, or use [LEGWORK](https://github.com/TeamLEGWORK/LEGWORK), then please include this BibTeX citation in your paper
 ```
-    TODO: Enter various citation methods in here when we submit
+@ARTICLE{Wagg+2021,
+       author = {{Wagg}, Tom and {Breivik}, Katelyn and {de Mink}, Selma E.},
+        title = "{LEGWORK: A python package for computing the evolution and detectability of stellar-origin gravitational-wave sources with space-based detectors}",
+      journal = {arXiv e-prints},
+     keywords = {Astrophysics - High Energy Astrophysical Phenomena, General Relativity and Quantum Cosmology},
+         year = 2021,
+        month = nov,
+          eid = {arXiv:2111.08717},
+        pages = {arXiv:2111.08717},
+archivePrefix = {arXiv},
+       eprint = {2111.08717},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021arXiv211108717W},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
 ```
+You can also [use ADS](https://ui.adsabs.harvard.edu/abs/2021arXiv211108717W/exportcitation) to get this information if you prefer a different format of citation!
