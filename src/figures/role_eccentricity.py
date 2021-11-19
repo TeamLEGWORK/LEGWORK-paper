@@ -3,6 +3,9 @@ import numpy as np
 import astropy.units as u
 import matplotlib.pyplot as plt
 
+from astropy.visualization import quantity_support
+quantity_support()
+
 plt.rc('font', family='serif')
 plt.rcParams['text.usetex'] = False
 fs = 24

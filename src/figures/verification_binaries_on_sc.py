@@ -3,6 +3,9 @@ import numpy as np
 import astropy.units as u
 import matplotlib.pyplot as plt
 
+from astropy.visualization import quantity_support
+quantity_support()
+
 plt.rc('font', family='serif')
 plt.rcParams['text.usetex'] = False
 fs = 24
@@ -23,8 +26,7 @@ plt.rcParams.update(params)
 vbs = lw.source.VerificationBinaries()
 vbs.snr = np.array(vbs.true_snr)
 
-fig, ax = lw.visualisation.plot_sensitivity_curve(frequency_range=np.logspace(-4, 0, 1000) * u.Hz,
-                                                  show=False)
+fig, ax = lw.visualisation.plot_sensitivity_curve(frequency_range=np.logspace(-4, 0, 1000) * u.Hz, show=False)
 fig, ax = vbs.plot_sources_on_sc(scatter_s=100, marker="*", snr_cutoff=7, c=vbs.m_1[vbs.snr > 7].to(u.Msun),
                                  fig=fig, ax=ax, show=False, cmap="Oranges", vmin=0.0, vmax=1.0)
 cbar = fig.colorbar(ax.get_children()[1])
