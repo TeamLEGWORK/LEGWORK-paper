@@ -22,7 +22,7 @@ params = {'figure.figsize': (12, 8),
 plt.rcParams.update(params)
 
 # spread out some frequencies and eccentricities
-f_orb_s = np.logspace(-4, -1, 200) * u.Hz
+f_orb_s = np.logspace(-4, -1, 200)
 ecc_s = np.linspace(0, 0.9, 150)
 
 # turn them into a grid
@@ -37,15 +37,15 @@ m_2 = np.repeat(10, len(F_flat)) * u.Msun
 dist = np.repeat(8, len(F_flat)) * u.kpc
 
 # define a set of sources
-sources = lw.source.Source(m_1=m_1, m_2=m_2, f_orb=F_flat, ecc=E_flat, dist=dist, gw_lum_tol=1e-3)
+sources = lw.source.Source(m_1=m_1, m_2=m_2, f_orb=F_flat * u.Hz, ecc=E_flat, dist=dist, gw_lum_tol=1e-3)
 sources.get_merger_time()
 
 # compute the LISA SNR
 LISA_snr = sources.get_snr(verbose=True, which_sources=sources.t_merge > 0.1 * u.yr)
 
 # compute the TianQin SNR
-sources.update_sc_params({"instrument": "TianQin", "t_obs": 4 * u.yr, "L": None})
-TQ_snr = sources.get_snr(instrument="TianQin", verbose=True, which_sources=sources.t_merge > 0.1 * u.yr)
+sources.update_sc_params({"instrument": "TianQin", "L": np.sqrt(3) * 1e5 * u.km})
+TQ_snr = sources.get_snr(verbose=True, which_sources=sources.t_merge > 0.1 * u.yr)
 
 # create a figure
 fig, ax = plt.subplots(figsize=(14, 12))
@@ -54,12 +54,13 @@ ax.set_xlabel(r"Orbital Frequency, $f_{\rm orb} \, [{\rm Hz}]$")
 ax.set_ylabel(r"Eccentricity, $e$")
 
 ratio = np.zeros_like(LISA_snr)
-ratio[LISA_snr > 0] = (LISA_snr[LISA_snr > 0] / TQ_snr[LISA_snr > 0])
+nonzero = np.logical_and(LISA_snr > 0, TQ_snr > 0)
+ratio[nonzero] = LISA_snr[nonzero] / TQ_snr[nonzero]
 ratio = ratio.reshape(F.shape)
 
 # make contours of the ratio of SNR
-ratio_cont = ax.contourf(F, E, ratio, cmap="PRGn_r",
-                         norm=TwoSlopeNorm(vcenter=1.0, vmin=0.0, vmax=3.6), levels=20)
+ratio_cont = ax.contourf(F, E, ratio, cmap="PRGn_r", norm=TwoSlopeNorm(vcenter=1.0),
+                         levels=np.arange(0, 3.75 + 0.2, 0.2))
 
 for c in ratio_cont.collections:
     c.set_edgecolor("face")
