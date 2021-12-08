@@ -60,7 +60,7 @@
 
 \begin{document}
 
-\title{Computing the evolution and detectability of stellar-origin gravitational-wave sources\\in space-based detectors using the LEGWORK python package}
+\title{LEGWORK: A python package for computing the evolution and detectability \\ of stellar-origin gravitational-wave sources with space-based detectors}
 
 % affiliations
 \newcommand{\cfa}{Center for Astrophysics | Harvard \& Smithsonian, 60 Garden Street, Cambridge, MA 02138, USA}
@@ -111,7 +111,7 @@ We note that \lw{} is not the only initiative of this kind. We highlight the ``G
 
 \lw{} has been developed with stellar-origin binary population studies in mind. We highlight two recent papers that use our package. \citet{Wagg+2021} investigates several populations of potential LISA sources (double black holes, black hole neutron stars and double neutron stars). They use \lw{} to evolve each synthesised source over the age of the Milky Way, make predictions about the LISA detectable population and explore how it varies with different binary physics assumptions. Additionally, \citet{Thiele+2021} examines the implications of assuming a metallicity-dependent binary fraction for the formation of close double white dwarfs (WDWDs) in the LISA frequency band. They use \lw{} to calculate the SNR of WDWDs and, in particular, apply a custom noise model that combines the LISA sensitivity curve from \citet{Robson+2019} with a new fit for the Galactic confusion noise based on their WDWD population.
 
-\lw{} can be installed with pip or obtained from the GitHub repository \href{https://github.com/TeamLEGWORK/LEGWORK}{\faGithub}\footnote{\url{https://github.com/TeamLEGWORK/LEGWORK}}. All examples shown in this paper and code to reproduce the figures are available in the repository. Instructions for installation and basic usage are provided in the online documentation\footnote{\url{https://legwork.readthedocs.io/en/latest/}} which contain the most up-to-date instructions.
+\lw{} can be installed with pip or obtained from the GitHub repository \href{https://github.com/TeamLEGWORK/LEGWORK}{\color{\lwColour}\faGithub}\footnote{\url{https://github.com/TeamLEGWORK/LEGWORK}}. All examples shown in this paper and code to reproduce the figures are available in the repository. Instructions for installation and basic usage are provided in the online documentation\footnote{\url{https://legwork.readthedocs.io/en/latest/}} which contain the most up-to-date instructions.
 
 The paper is organised as follows. In Section~\ref{sec:LEGWORK-overview} we give an overview of the capabilities of the \lw{} package and its various modules. We detail the derivations of the equations relevant for \lw{} in Section~\ref{sec:derivations}. In Section~\ref{sec:example-uses} we outline some example use cases of \lw{} to demonstrate its use. Finally, in Section~\ref{sec:summary} we conclude and summarise our work.
 
@@ -123,7 +123,7 @@ The \lw{} package is composed of seven modules that each focus on a particular a
     \centering
     \includegraphics[width=\columnwidth]{static/package_overview.png}
     \caption{Package structure of \lw{}. Each box represents a module and describes its function. The arrows indicate the inter-dependencies of the modules.}
-    % \marginicon{\href{https://raw.githubusercontent.com/TeamLEGWORK/LEGWORK-paper/main/src/static/package_overview.png}{\color{lwColour}\faFileImage}}}
+    \marginicon{\href{https://raw.githubusercontent.com/TeamLEGWORK/LEGWORK-paper/main/src/static/package_overview.png}{\color{\lwColour}\faFileImage}}
     \label{fig:package_overview}
 \end{figure}
 
