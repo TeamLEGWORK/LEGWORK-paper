@@ -11,6 +11,9 @@
 \usepackage[hang,flushmargin]{footmisc} 
 
 \newcommand{\todo}[1]{{\color{red}{[TODO: #1}]}}
+
+% referee command so we can highlight changes
+\definecolor{WildStrawberry}{RGB}{239, 85, 159}
 \newcommand{\referee}[1]{{\color{WildStrawberry} #1}}
 
 % custom function for adding units
@@ -451,8 +454,8 @@ where $\tilde{s}(f)$ is the Fourier transform of the signal, $s(t)$, and $P_{\rm
 \begin{equation}{}
 \label{eq:signal}
     \begin{split}
-        |\tilde{s}(f)|^2 = |&F_+(\theta, \phi, \psi)\tilde{h}_+(t, D_L, \iota, \beta) \\
-        &+ F_{\times}(\theta, \phi, \psi)\tilde{h}_{\times}(t, D_L, \iota, \beta)|^2,
+        |\tilde{s}(f)|^2 = |&F_+(\theta, \phi, \psi)\tilde{h}_+(\referee{f}, D_L, \iota, \beta) \\
+        &+ F_{\times}(\theta, \phi, \psi)\tilde{h}_{\times}(\referee{f}, D_L, \iota, \beta)|^2,
     \end{split}
 \end{equation}
 where $F_{+,\times}$ are the `plus' and `cross' antenna patterns of the LISA detector to the `plus' and `cross' strains, $h_{+,\times}$. Note throughout any parameters discussed with the subscript $x_{+,\times}$ refers to both $x_{+}$ and $x_{\times}$.
@@ -460,8 +463,8 @@ where $F_{+,\times}$ are the `plus' and `cross' antenna patterns of the LISA det
 In LISA's case, when averaged over all angles and polarisations, the antenna patterns are orthogonal and thus $\langle F_+ F_{\times}\rangle = 0$. This means we can rewrite Eq.~\ref{eq:signal} as 
 \begin{equation}{}
     \begin{split}
-        |\tilde{s}(f)|^2 &= |F_+(\theta, \phi, \psi)\tilde{h}_+(t, D_L, \iota, \beta)|^2\\
-        &+ |F_{\times}(\theta, \phi, \psi)\tilde{h}_{\times}(t, D_L, \iota, \beta)|^2,
+        |\tilde{s}(f)|^2 &= |F_+(\theta, \phi, \psi)\tilde{h}_+(\referee{f}, D_L, \iota, \beta)|^2\\
+        &+ |F_{\times}(\theta, \phi, \psi)\tilde{h}_{\times}(\referee{f}, D_L, \iota, \beta)|^2,
     \end{split}
 \end{equation} 
 which can then be applied to Eq.~\ref{eq:snr_general_start} as
