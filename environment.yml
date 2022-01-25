@@ -1,10 +1,10 @@
 channels:
   - defaults
 dependencies:
-  - numpy>=1.20
+  - numpy>=1.16
   - pip>=20.3.3
   - python=3.9
-  - astropy>=4.3.1
+  - astropy>=4.0
   - pip:
-      - matplotlib>=3.3.3
-      - legwork>=0.2.0
+      - matplotlib>=3.3.2
+      - legwork>=0.2.2
