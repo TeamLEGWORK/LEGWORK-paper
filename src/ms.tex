@@ -573,23 +573,23 @@ For an evolving and eccentric binary, no approximation can be made and the SNR i
 
 For a evolving and circular binary, the sum can be removed and so the SNR found as
 \begin{equation}{\lwFuncURL{snr}{snr_circ_evolving}}
-    \rho^2_{\rm c, e} = \frac{1}{4} \int_{f_{2, i}}^{f_{2, f}} \frac{h_{c, 2}^2}{f_2^2 S_{\rm n}(f_2)} \dd{f_2}. \label{eq:snr_chirp_circ}
+    \referee{\langle \rho \rangle^2_{\rm c, e}} = \frac{1}{4} \int_{f_{2, i}}^{f_{2, f}} \frac{h_{c, 2}^2}{f_2^2 S_{\rm n}(f_2)} \dd{f_2}. \label{eq:snr_chirp_circ}
 \end{equation}
 
 For a stationary and eccentric binary we can approximate the integral.
 \begin{align}
-    \rho^2_{\rm e, s} &= \frac{1}{4} \sum_{n=1}^{\infty}  \lim_{\Delta f \to 0} \int_{f_{n}}^{f_{n} + \Delta f_n} \frac{h_{c, n}^2}{f_n^2 S_{\rm n}(f_n)} \dd{f_n}, \\
+    \referee{\langle \rho \rangle^2_{\rm e, s}} &= \frac{1}{4} \sum_{n=1}^{\infty}  \lim_{\Delta f \to 0} \int_{f_{n}}^{f_{n} + \Delta f_n} \frac{h_{c, n}^2}{f_n^2 S_{\rm n}(f_n)} \dd{f_n}, \\
     &= \frac{1}{4} \sum_{n=1}^{\infty} \frac{\Delta f_n \cdot h_{c, n}^2}{f_n^2 S_{\rm n}(f_n)}, \\
     &= \frac{1}{4} \sum_{n=1}^{\infty} \frac{\dot{f}_n \Delta T \cdot h_{c, n}^2}{f_n^2 S_{\rm n}(f_n)}, \\
     &= \frac{1}{4} \sum_{n=1}^{\infty} \qty(\frac{\dot{f}_n}{f_n^2} h_{c, n}^2) \frac{T_{\rm obs}}{S_{\rm n}(f_n)},
 \end{align}
 where we have applied \eqref{eq:strain-charstrain} to convert between strains. This gives the following expression
 \begin{equation}{\lwFuncURL{snr}{snr_ecc_stationary}}
-    \rho^2_{\rm e, s} = \frac{1}{4} \sum_{n=1}^{\infty} \frac{h_{n}^2 T_{\rm obs}}{S_{\rm n}(f_n)}. \label{eq:snr_stat_ecc}
+    \referee{\langle \rho \rangle^2_{\rm e, s}} = \frac{1}{4} \sum_{n=1}^{\infty} \frac{h_{n}^2 T_{\rm obs}}{S_{\rm n}(f_n)}. \label{eq:snr_stat_ecc}
 \end{equation}
 Finally, for a stationary and circular binary the signal-to-noise ratio is
 \begin{equation}{\lwFuncURL{snr}{snr_circ_stationary}}
-    \rho^2_{\rm c, s} = \frac{1}{4} \frac{h_2^2 T_{\rm obs}}{S_{\rm n}(f_2)}.
+    \referee{\langle \rho \rangle^2_{\rm c, s}} = \frac{1}{4} \frac{h_2^2 T_{\rm obs}}{S_{\rm n}(f_2)}.
     \label{eq:snr_stat_circ}
 \end{equation}
 
