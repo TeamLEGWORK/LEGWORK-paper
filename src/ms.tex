@@ -135,7 +135,7 @@ The \lw{} package is composed of seven modules that each focus on a particular a
 
 \lwModLink{strain} contains two functions that compute a binary's gravitational wave strain and characteristic strain amplitude respectively. Each of these functions is capable of computing the strain for an array of binaries at any number of timesteps and evaluated at any number of frequency harmonics. We discuss the relevant equations in Section~\ref{sec:deriv_strain}.
 
-\lwModLink{psd} is used for evaluating the effective noise power spectral density of a detector at different frequencies. The module currently contains the LISA and TianQin sensitivity curves that can be tweaked by adjusting parameters such as the observation time, confusion noise and even the arm length. Additionally, this module allows the user to specify a custom detector sensitivity curve. We discuss the relevant equations in Section~\ref{sec:deriv_psd}.
+\lwModLink{psd} is used for evaluating the effective noise power spectral density of a detector at different frequencies. The module currently contains the LISA and TianQin sensitivity curves that can be tweaked by adjusting parameters such as the observation time, response function and even the arm length. \referee{For the Galactic confusion noise, a user can choose one of three models \citep{Robson+2019,Huang+2020,Thiele+2021}, use their own custom model, or turn it off entirely.} Additionally, this module allows the user to specify a custom detector sensitivity curve. We discuss the relevant equations in Section~\ref{sec:deriv_psd}.
 
 \lwModLink{snr} uses the functions in \texttt{evol}, \texttt{strain} and \texttt{psd} to compute the signal-to-noise ratio of sources. It contains four functions that cover the permutations of whether a source is circular or eccentric and stationary in frequency space on the timescale of the mission or evolving. We discuss the relevant equations in Section~\ref{sec:deriv_snr}.
 
@@ -145,7 +145,13 @@ The \lw{} package is composed of seven modules that each focus on a particular a
 
 \lwModLink{utils} is a collection of miscellaneous utility functions mainly consisting of conversions between variables as well as constants and expressions from \citet{Peters+1964}. We discuss the relevant equations in Section~\ref{sec:deriv_utils}.
 
-To ensure stability with physical units, all quantities included in \lw{} use the \texttt{astropy.units} module \citep{AstropyCollaboration+2013, AstropyCollaboration+2018}. This means that all inputs to \lw{} can be given in the units of the user's choice and will be automatically converted. Furthermore, all of the source code in \lw{} is fully tested with continuous integration in the \lw{} GitHub repository. We employ several unit tests to ensure consistency between each of the use cases described below. For example, we require that the SNR calculation for circular and stationary binaries produces consistent output whether \lw{} uses the stationary and circular approximations or not. Similarly, we verify that the antenna patterns described below produce the expected values when averaged over source positions, inclinations, and polarisations.
+\subsection{\referee{Units and automated testing}}
+
+To ensure stability with physical units, all quantities included in \lw{} use the \texttt{astropy.units} module \citep{AstropyCollaboration+2013, AstropyCollaboration+2018}. This means that all inputs to \lw{} can be given in the units of the user's choice and will be automatically converted.
+
+Furthermore, all of the source code in \lw{} is fully tested with continuous integration in the \lw{} GitHub repository. We employ several unit tests to ensure consistency between each of the use cases described below. For example, we require that the SNR calculation for circular and stationary binaries produces consistent output whether \lw{} uses the stationary and circular approximations or not. Similarly, we verify that the antenna patterns described below produce the expected values when averaged over source positions, inclinations, and polarisations.
+
+\pagebreak
 
 \subsection{Optimistations}
 
