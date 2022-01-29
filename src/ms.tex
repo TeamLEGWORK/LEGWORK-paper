@@ -191,7 +191,7 @@ For circular binaries, gravitational-wave emission occurs at twice the orbital f
     f_{n} \equiv n \cdot f_{\rm orb}.
     \label{eq:nth_freq}
 \end{equation}
-It will be important to know the relative gravitational-wave power radiated into the $n^{\rm th}$ harmonic for a binary with eccentricity $e$ for the following strain and SNR calculations. This is given by \citet[][Eq.\,20]{Peters+1963}
+It will be important to know the relative gravitational-wave power radiated into the $n^{\rm th}$ harmonic for a binary with eccentricity $e$ for the strain and SNR calculations. This is given by \citet[][Eq.\,20]{Peters+1963}
 \begin{equation}{\lwFuncURL{utils}{peters_g}}
     \begin{aligned}
         g(n, e) = \frac{n^{4}}{32} & \Big\{ \Big[ J_{n-2}(n e)-2 e J_{n-1}(n e)+\frac{2}{n} J_{n}(n e) \\
@@ -269,20 +269,15 @@ In addition, we implement the fit to Eq.~\ref{eq:t_merge_eccentric} from \citet{
 which gives $t_{\rm merge}$ with an error below 3\% for eccentricities below $0.9999$. We additionally add a rudimentary polynomial fit to further reduce this error to below $0.5\%$. The user may specify whether to use this fit or perform the full integral when calculating merger times in \lw{}.
 
 \subsection{Strains {\normalfont (\texorpdfstring{\lwModLink{strain}}{strain})}}\label{sec:deriv_strain}
+\referee{\subsubsection{Characteristic Strain}
 The strength of a gravitational wave in a detector at any one moment is determined by the strain amplitude, $h_0$. However, for stellar-origin sources at mHz frequencies, the signal can be present in the detector for many years. This means that, the $n^{\rm th}$ harmonic of the binary will spend approximately $f_n / \dot{f}_n$ seconds (or $f_n^2 / \dot{f}_n$ cycles) in the vicinity of a frequency $f_n$ \citep{Finn+2000}. This leads to the signal `accumulating' at the frequency $f_n$.
 
-Therefore, to account for the integration of the signal over the mission, we instead use the `characteristic' strain amplitude of the $n^{\rm th}$ harmonic \citep[e.g][]{Finn+2000, Moore+2015}\footnote{Note that this is factor of 2 different from \citet{Finn+2000}. This is because the factor of 2 is already included in the \citet{Robson+2019} sensitivity curve and so is removed here.}
+Therefore, to account for the integration of the signal over the mission, we instead use the `characteristic' strain amplitude of the $n^{\rm th}$ harmonic, $h_{c, n}$, which is the term present in the general signal-to-noise ratio equation. This can be related the to the strain amplitude in the $n^{\rm th}$ harmonic, $h_{0, n}$, as \citep[e.g][]{Finn+2000, Moore+2015}\footnote{Note that this is factor of 2 different from \citet{Finn+2000}. This is because the factor of 2 is already included in the \citet{Robson+2019} sensitivity curve and so is removed here.}
 \begin{equation}{}
     h_{c, n}^2 = \qty(\frac{f_n^2}{\dot{f}_n}) h_{0, n}^2,
     \label{eq:strain-charstrain}
 \end{equation}
-where $h_{0, n}$ is the strain amplitude in the $n^{\rm th}$ harmonic.
-
-The characteristic strain represents the strain measured by the detector over the duration of the mission (approximated as a single broad-band burst), whilst the strain amplitude is the strength of the GW emission at each instantaneous moment.
-
-\subsubsection{Characteristic Strain}
-
-The characteristic strain from a stellar mass binary in the $n^{\rm th}$ harmonic is given by (e.g. \citealp[][Eq.\,56]{Barack+2004}; \citealp[][Eq.\,5.1]{ Flanagan+1998})
+The characteristic strain represents the strain measured by the detector over the duration of the mission (approximated as a single broad-band burst), whilst the strain amplitude is the strength of the GW emission at each instantaneous moment. For a stellar mass binary, the characteristic strain in the $n^{\rm th}$ harmonic is given by (e.g. \citealp[][Eq.\,56]{Barack+2004}; \citealp[][Eq.\,5.1]{ Flanagan+1998})}
 \begin{equation}{}
     h_{c,n}^2 = \frac{1}{(\pi D_L)^2} \qty( \frac{2 G}{c^3} \frac{\dot{E_n}}{\dot{f_n}} ),
     \label{eq:char_strain_dedf}
