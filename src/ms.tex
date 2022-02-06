@@ -336,42 +336,44 @@ Because the LISA detectors are not stationary and instead follow an Earth-traili
 We write that the position of the source on the sky is given by the ecliptic coordinates ($\theta$, $\phi$), the inclination of a source is $\iota$ and the polarisation of a source (determined by its orientation relative to the detector) is given by $\psi$. We closely follow the results of \citet{Cornish2003} to write down the amplitude modulation as
 
 \begin{equation}{\lwFuncURL{strain}{amplitude_modulation}}
-    A_{\rm{mod}}^{2}=\frac{1}{2} \left[\left(1+\cos ^{2} \iota\right)^{2}\left\langle F_{+}^{2}\right\rangle+4 \cos ^{2} \iota\left\langle F_{\times}^{2}\right\rangle\right],
+    A_{\rm{mod}}^{2}=\frac{1}{2} \left[\left(1+\cos ^{2} \iota\right)^{2}\left\langle F_{+}^{2}\right\rangle_{\rm \referee{orb}}+4 \cos ^{2} \iota\left\langle F_{\times}^{2}\right\rangle_{\rm \referee{orb}}\right],
 \label{eq:amp_mod}
 \end{equation}
-where $\left\langle F_{+}^{2}\right\rangle$ and $\left\langle F_{\times}^{2}\right\rangle$, the orbit-averaged detector responses, are defined as
+where $\left\langle F_{+}^{2}\right\rangle_{\rm \referee{orb}}$ and $\left\langle F_{\times}^{2}\right\rangle_{\rm \referee{orb}}$, the orbit-averaged detector responses, are defined as
 \begin{equation}{\lwFuncURL{utils}{F_plus_squared}}
     \begin{split}
-        \avg{ F_{+}^{2}} = \frac{1}{4}\big(\cos ^{2} 2 \psi\left\langle D_{+}^{2}\right\rangle &-\sin 4 \psi\left\langle D_{+} D_{\times}\right\rangle\\
-        &+\sin ^{2} 2 \psi\left\langle D_{\times}^{2}\right\rangle\big),
+        \avg{ F_{+}^{2}}_{\rm \referee{orb}} = \frac{1}{4}\big(&\cos ^{2} 2 \psi\left\langle D_{+}^{2}\right\rangle_{\rm \referee{orb}} \\
+        -&\sin 4 \psi\left\langle D_{+} D_{\times}\right\rangle_{\rm \referee{orb}}\\
+        +&\sin ^{2} 2 \psi\left\langle D_{\times}^{2}\right\rangle_{\rm \referee{orb}}\big),
     \end{split}
 \label{eq:response_fplus}
 \end{equation}
 
 \begin{equation}{\lwFuncURL{utils}{F_cross_squared}}
     \begin{split}
-        \avg{ F_{\times}^{2}} = \frac{1}{4}\big(\cos^{2} 2 \psi \avg{ D_{\times}^{2}} &+\sin 4 \psi \avg{ D_{+} D_{\times}}\\
-        &+\sin ^{2} 2 \psi \avg{ D_{+}^{2}} \big),
+        \avg{ F_{\times}^{2}} = \frac{1}{4}\big(&\cos^{2} 2 \psi \avg{ D_{\times}^{2}}_{\rm \referee{orb}}\\
+        +&\sin 4 \psi \avg{ D_{+} D_{\times}}_{\rm \referee{orb}}\\
+        +&\sin ^{2} 2 \psi \avg{ D_{+}^{2}}_{\rm \referee{orb}} \big),
     \end{split}
 \label{eq:response_fcross}
 \end{equation}
 and
 \begin{equation}{\lwFuncURL{utils}{D_plus_D_cross}}
     \begin{split}
-        \avg{ D_{+} D_{\times}} = \frac{243}{512} \cos \theta \sin 2 \phi &\left(2 \cos ^{2} \phi-1\right) \\ &\times \left(1+\cos ^{2} \theta\right),
+        \avg{ D_{+} D_{\times}}_{\rm \referee{orb}} = \frac{243}{512} \cos \theta \sin 2 \phi &\left(2 \cos ^{2} \phi-1\right) \\ &\times \left(1+\cos ^{2} \theta\right),
     \end{split}
 \label{eq:d_plus_cross}
 \end{equation}
 \begin{equation}{\lwFuncURL{utils}{D_cross_squared}}
     \begin{split}
-        \avg{ D_{\times}^{2}} = \frac{3}{512}\big(120 \sin ^{2} \theta &+\cos ^{2} \theta \\
+        \avg{ D_{\times}^{2}}_{\rm \referee{orb}} = \frac{3}{512}\big(120 \sin ^{2} \theta &+\cos ^{2} \theta \\
         &+162 \sin ^{2} 2 \phi \cos ^{2} \theta\big),
     \end{split}
 \label{eq:d_cross}
 \end{equation}
 \begin{equation}{\lwFuncURL{utils}{D_plus_squared}}
     \begin{split}
-        \avg{ D_{+}^{2} } =  \frac{3}{2048}\big[&487+158 \cos ^{2} \theta+7 \cos ^{4} \theta\\
+        \avg{ D_{+}^{2} }_{\rm \referee{orb}} =  \frac{3}{2048}\big[&487+158 \cos ^{2} \theta+7 \cos ^{4} \theta\\
         &-162 \sin ^{2} 2 \phi\left(1+\cos ^{2} \theta\right)^{2}\big].
     \end{split}
 \label{eq:d_plus}
