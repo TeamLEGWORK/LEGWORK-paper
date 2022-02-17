@@ -380,7 +380,7 @@ and
 \end{equation}
 The orbital motion of LISA smears the source frequency by roughly $10^{-4}\,\rm{mHz}$ due to the antenna pattern changing as the detector orbits, the Doppler shift from the motion, and the phase modulation from the $+$ and $\cross$ polarisations in the antenna pattern. Generally, the modulation reduces the strain amplitude because the smearing in frequency reduces the amount of signal build up at the true source frequency.
 
-We note that since the orbit averaging is carried out in Fourier space, this requires the frequency to be monochromatic and thus is only implemented in \lw{} for quasi-circular binaries (as eccentric systems emit at many frequency harmonics).
+\referee{We note that the amplitude modulation is only implemented in \lw{} for quasi-circular binaries to remain consistent with the calculation in \cite{Cornish2003}. Since the expected use case of LEGWORK is estimation of the detectability of large populations of mHz stellar-remnant binaries, for which predictions are uncertain by orders of magnitude in some cases, an extension of \cite{Cornish2003} which includes eccentric binaries is out of the scope of \lw{}.}
 
 \subsection{Sensitivity Curves {\normalfont (\texorpdfstring{\lwModLink{psd}}{psd})}}\label{sec:deriv_psd}
 
