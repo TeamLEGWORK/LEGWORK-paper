@@ -463,26 +463,19 @@ where $\tilde{s}(f)$ is the Fourier transform of the signal, $s(t)$, and $P_{\rm
 \end{equation}
 where $F_{+,\times}$ are the `plus' and `cross' antenna patterns of the LISA detector to the `plus' and `cross' strains, $h_{+,\times}$. Note throughout any parameters discussed with the subscript $x_{+,\times}$ refers to both $x_{+}$ and $x_{\times}$.
 
-In LISA's case, when averaged over all angles and polarisations, the antenna patterns are orthogonal and thus $\langle F_+ F_{\times}\rangle = 0$. This means we can rewrite Eq.~\ref{eq:signal} as 
+\subsubsection{Average over position and polarisation}
+\referee{Now, we can consider averaging over different quantities. In LISA's case, when averaged over all angles and polarisations, the antenna patterns are orthogonal and thus $\langle F_+ F_{\times}\rangle = 0$. This means we can rewrite Eq.~\ref{eq:signal} as 
 \begin{equation}{}
     \begin{split}
         |\tilde{s}(f)|^2 &= |F_+(\theta, \phi, \psi)\tilde{h}_+(\referee{f}, D_L, \iota, \beta)|^2\\
         &+ |F_{\times}(\theta, \phi, \psi)\tilde{h}_{\times}(\referee{f}, D_L, \iota, \beta)|^2,
     \end{split}
-\end{equation} 
-which can then be applied to Eq.~\ref{eq:snr_general_start} as
-\begin{equation}{}
-\label{eq:snr_general_simpler}
-    \rho^2 = 4 \int_0^{\infty} \frac{|F_+\tilde{h}_+|^2 + |F_{\times}\tilde{h}_{\times}|^2}{P_{\rm n}(f)} df.
 \end{equation}
-
-\subsubsection{Average over position and polarisation}
-Now, we can consider averaging over different quantities. In particular, we can average over the sky position and polarisation as
-
+which can then be applied to Eq.~\ref{eq:snr_general_start} to give
 \begin{equation}{}
 \label{eq:position_orientation_ave}
     \langle \rho \rangle^2_{\theta,\phi,\psi} = 4 \int_0^{\infty} df \int \frac{d\Omega_{\theta,\phi}}{4\pi} \int \frac{d\psi}{\pi} \frac{|F_+\,\tilde{h}_+|^2 + |F_{\times}\,\tilde{h}_{\times}|^2}{P_{\rm n}(f)}.
-\end{equation}
+\end{equation}}
 From \cite{Robson+2019}, we can write the position and polarisation average of the signal response function of the instrument, $\mathcal{R}$, as
 
 \begin{equation}{}
