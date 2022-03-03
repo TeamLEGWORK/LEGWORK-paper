@@ -29,7 +29,8 @@ vbs.snr = np.array(vbs.true_snr)
 fig, ax = lw.visualisation.plot_sensitivity_curve(frequency_range=np.logspace(-4, 0, 1000) * u.Hz, show=False)
 fig, ax = vbs.plot_sources_on_sc(scatter_s=100, marker="*", snr_cutoff=7, c=vbs.m_1[vbs.snr > 7].to(u.Msun),
                                  fig=fig, ax=ax, show=False, cmap="Oranges", vmin=0.0, vmax=1.0)
-cbar = fig.colorbar(ax.get_children()[1])
+
+cbar = fig.colorbar(ax.get_children()[2])
 cbar.set_label(r"Primary Mass, $m_1 \, [{\rm M_{\odot}}]$")
 
 ax.legend(handles=[ax.get_children()[1]], labels=["LISA Verification Binaries (Kupfer+18)"], fontsize=0.7*fs, markerscale=2)
