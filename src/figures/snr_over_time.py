@@ -41,7 +41,8 @@ source = lw.source.Source(m_1=np.repeat(m_1, len(ecc_evol)),
                           m_2=np.repeat(m_2, len(ecc_evol)),
                           dist=np.repeat(dist, len(ecc_evol)),
                           ecc=ecc_evol,
-                          f_orb=f_orb_evol)
+                          f_orb=f_orb_evol,
+                          interpolate_g=False)
 
 snr = source.get_snr()
 
