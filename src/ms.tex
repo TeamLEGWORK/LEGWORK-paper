@@ -392,8 +392,8 @@ For the LISA sensitivity curve we use the equations from \citet{Robson+2019}. Th
 where $P_{\rm n}(f)$ is the power spectral density of the detector noise and $\mathcal{R}(f)$ is the sky and polarisation averaged signal response function of the instrument. Alternatively if we expand out $P_n(f)$, approximate $\mathcal{R}(f)$ and simplify we find \citep[][Eq.~1]{Robson+2019}
 \begin{equation}{}
     \begin{split}
-        S_{\rm n}(f) &= \frac{10}{3 L^2} \qty(P_{\rm OMS}(f) + \frac{4 P_{\rm acc}(f)}{(2 \pi f)^4}) \\
-        &\times \qty(1 + \frac{6}{10} \qty(\frac{f}{f_*}^2)) + S_c(f),
+        S_{\rm n}(f) &= \frac{10}{3 L^2} \qty(P_{\rm OMS}(f) + 2\qty(1 + \cos^2 \qty(\frac{f}{f_*})) \frac{P_{\rm acc}(f)}{(2 \pi f)^4}) \\
+        &\times \qty(1 + \frac{6}{10} \qty(\frac{f}{f_*})^2) + S_c(f),
     \end{split}
     \label{eq:LISA_Sn}
 \end{equation}
