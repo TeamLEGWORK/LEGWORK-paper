@@ -2,6 +2,7 @@ import legwork as lw
 import numpy as np
 import astropy.units as u
 import matplotlib.pyplot as plt
+import paths
 
 plt.rc('font', family='serif')
 plt.rcParams['text.usetex'] = False
@@ -49,4 +50,4 @@ ax.legend(fontsize=0.7*fs)
 
 ax.set_rasterization_zorder(10000)
 
-plt.savefig("detector_sc_compare.pdf", format="pdf", bbox_inches="tight")
+plt.savefig(paths.figures / "detector_sc_compare.pdf", format="pdf", bbox_inches="tight")

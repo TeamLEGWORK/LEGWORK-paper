@@ -2,6 +2,7 @@ import legwork as lw
 import numpy as np
 import astropy.units as u
 import matplotlib.pyplot as plt
+import paths
 
 from astropy.visualization import quantity_support
 quantity_support()
@@ -89,4 +90,4 @@ ax.set_ylim(1e-20, 2e-18)
 
 ax.set_rasterization_zorder(10000)
 
-plt.savefig("role_eccentricity.pdf", format="pdf", bbox_inches="tight")
+plt.savefig(paths.figures / "role_eccentricity.pdf", format="pdf", bbox_inches="tight")

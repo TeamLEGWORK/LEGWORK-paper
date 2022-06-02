@@ -2,6 +2,7 @@ import legwork as lw
 import numpy as np
 import astropy.units as u
 import matplotlib.pyplot as plt
+import paths
 
 plt.rc('font', family='serif')
 plt.rcParams['text.usetex'] = False
@@ -86,4 +87,4 @@ for ax in axes:
 
 ax.set_rasterization_zorder(10000)
 
-plt.savefig("snr_over_time.pdf", format="pdf", bbox_inches="tight")
+plt.savefig(paths.figures / "snr_over_time.pdf", format="pdf", bbox_inches="tight")

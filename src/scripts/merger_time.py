@@ -2,6 +2,7 @@ import legwork as lw
 import numpy as np
 import astropy.units as u
 import matplotlib.pyplot as plt
+import paths
 
 plt.rc('font', family='serif')
 plt.rcParams['text.usetex'] = False
@@ -56,4 +57,4 @@ ax.clabel(mission_length, fmt={np.log10(4): r"$t_{\rm merge} = 4\,{\rm years}$"}
 
 ax.set_rasterization_zorder(10000)
 
-plt.savefig("merger_time.pdf", format="pdf", bbox_inches="tight")
+plt.savefig(paths.figures / "merger_time.pdf", format="pdf", bbox_inches="tight")

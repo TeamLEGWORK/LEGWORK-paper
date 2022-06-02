@@ -10,6 +10,8 @@
 % remove indents in footnotes
 \usepackage[hang,flushmargin]{footmisc} 
 
+\usepackage{showyourwork}
+
 \newcommand{\todo}[1]{{\color{red}{[TODO: #1}]}}
 
 % referee command so we can highlight changes
@@ -125,7 +127,7 @@ The \lw{} package is composed of seven modules that each focus on a particular a
 
 \begin{figure}
     \centering
-    \includegraphics[width=\columnwidth]{static/package_overview.png}
+    \includegraphics[width=\columnwidth]{figures/package_overview.png}
     \caption{Package structure of \lw{}. Each box represents a module and describes its function. The arrows indicate the inter-dependencies of the modules.}
     \marginicon{\href{https://raw.githubusercontent.com/TeamLEGWORK/LEGWORK-paper/main/src/static/package_overview.png}{\color{\lwColour}\faFileImage}}
     \label{fig:package_overview}
@@ -608,6 +610,7 @@ This can be generalised to a population of many binary systems with ease. Instea
     \includegraphics[width=\textwidth]{figures/horizon_distance.pdf}
     \caption{The horizon distance for circular, stellar-mass binaries in a 4-year LISA mission. The filled contours indicate the horizon distance for different orbital frequencies and chirp masses. We add white dotted contours at $8, 50, 800 \unit{kpc}$ and $40 \unit{Mpc}$ to highlight the distances to the centre of the Milky Way, the Magellanic Clouds, the Andromeda galaxy and the nearest ground-based gravitational wave detection (GW170817, \citealp{Abbott+2017_GW170817}) respectively. The diagonal black line shows the frequencies and chirp masses at which the merger time is equal to the observation time. This line emphasises the sharp contrast for the horizon distance for binaries that merge before the LISA mission finishes observing (to the right of the line). The horizontal black lines indicate the approximate location of some common double compact object types on this plot, with the assumed masses labelled below in solar masses.}
     \label{fig:horizon_distance}
+    \script{horizon_distance.py}
 \end{figure*}
 
 A common question to consider with stellar mass sources in LISA is how far away a certain source could be detected. In other words, what is the horizon distance beyond which a source no longer has a SNR greater than some chosen threshold. We can explore this question using \lw{}.
@@ -648,6 +651,7 @@ We can illustrate this point with \lw{} by calculating the SNR at each individua
     \includegraphics[width=\columnwidth]{figures/role_eccentricity.pdf}
     \caption{An illustration of the effect of eccentricity on the detectability of a LISA source. The three sets of points are coloured by their eccentricity and each individual point corresponds to a harmonic frequency, where its height above the curve gives its SNR. We annotate each set of points with its total SNR and overlay the LISA sensitivity curve. The dotted vertical lines indicate the frequency at which the majority of the gravitational wave signal is concentrated.}
     \label{fig:role_eccentricity}
+    \script{role_eccentricity.py}
 \end{figure}
 
 From Figure~\ref{fig:role_eccentricity}, we can better understand why a source with $e = 0.9$ has a lower SNR than the same source with $e = 0.6$. From the dotted lines, we can note that the signal from the $e = 0.9$ source is concentrated at a frequency of around $40 \unit{mHz}$. The LISA sensitivity at this point is much weaker than the $6 \unit{mHz}$ at which the $e =0.6$ source is concentrated. Therefore, although the strain from a more eccentric binary is stronger, the SNR is lower due to the increased noise in the LISA detector.
@@ -661,6 +665,7 @@ Another consideration for more massive binaries is whether the increased eccentr
     \includegraphics[width=\columnwidth]{figures/merger_time.pdf}
     \caption{The merger time for a binary with both a primary and secondary mass of $10 \unit{M_{\odot}}$ over different eccentricities and orbital frequencies. The dashed line indicates a merger time of 4 years, the default LISA mission length.}
     \label{fig:merger_time}
+    \script{merger_time.py}
 \end{figure}
 
 We plot the results of this calculation in Figure~\ref{fig:merger_time}. This plot shows that, for most eccentricities, the merger time is largely determined by the orbital frequency. However, for high eccentricities ($e > 0.8$), the eccentricity leads to a significant reduction in the merger time. Additionally, we can see that any binary that is to the right of the dashed line on this plot at the start of a 4-year LISA mission, would merge before the mission ended. Therefore, if increasing a binary's eccentricity moved it to the right of this line, its SNR will decrease significantly.
@@ -676,6 +681,7 @@ As a first step, we can use \lw{} to plot a series of sensitivity curves in Figu
     \includegraphics[width=\columnwidth]{figures/detector_sc_compare.pdf}
     \caption{The strain spectral density of the LISA detector with different specifications \citep{Robson+2019} and the TianQin detector \citep{Huang+2020}. We show the LISA curve for three different mission lengths and once with an approximate response function.}
     \label{fig:detector_sc_compare}
+    \script{detector_sc_compare.py}
 \end{figure}
 
 Although comparing the sensitivity curves would suffice for a stationary and circular source (since it would remain at a single frequency), \lw{} can also be used to see how the relative SNR between two detectors changes over a range of eccentricities and frequencies.
@@ -687,6 +693,7 @@ Using \lw{}, we can compute the SNR of a grid of sources (spanning a range of fr
     \includegraphics[width=\columnwidth]{figures/detector_snr_ratio.pdf}
     \caption{The ratio of the SNR in LISA (for a 4-year mission) to the SNR in TianQin. The dashed line indicates the transition at which the SNR is equal in both detectors. We annotate the regions in which either detector has a higher SNR and also annotate the mass and distance of each source in the grid.}
     \label{fig:detector_snr_ratio}
+    \script{detector_snr_ratio.py}
 \end{figure}
 
 \subsection{Track SNR of a binary over time\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/SNROverTime.html}}{}}
@@ -713,6 +720,7 @@ Note that \lw{} could also be used in this way to find the SNR of any system in 
     \includegraphics[width=\columnwidth]{figures/snr_over_time.pdf}
     \caption{The evolution of a binary system's eccentricity (top), orbital frequency (middle) and SNR (bottom). Each panel is annotated with the constant parameters of the system. The SNR is calculated for a 4-year LISA mission. We annotate in  a line the bottom panel at $\mathrm{SNR} = 7$ to highlight the moment at which the source becomes detectable.}
     \label{fig:snr_over_time}
+    \script{snr_over_time.py}
 \end{figure}
 
 \subsection{LISA verification binaries\texorpdfstring{ - \tutorialLink{https://legwork.readthedocs.io/en/latest/demos/VerificationBinaries.html}}{}}
@@ -727,6 +735,7 @@ As an example of how you could use this data, we use the \texttt{VerificationBin
     \includegraphics[width=\columnwidth]{figures/verification_binaries_on_sc.pdf}
     \caption{The LISA verification binaries from \citet{Kupfer+2018} plotted on the LISA sensitivity curve \citep{Robson+2019} for a 4-year LISA mission. Points are coloured by their primary mass.}
     \label{fig:verification_binaries_on_sc}
+    \script{verification_binaries_on_sc.py}
 \end{figure}
 
 \section{Conclusion \& Summary}\label{sec:summary}
