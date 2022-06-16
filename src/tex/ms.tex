@@ -335,10 +335,10 @@ In order to obtain an expression for the strain amplitude of gravitational waves
 \label{sec:amplitude_mod}
 Because the LISA detectors are not stationary and instead follow an Earth-trailing orbit, the antenna pattern of LISA is not isotropically distributed or stationary. For sources that have unknown positions, inclinations, and polarisations, we use an average for the detector. However, for sources where these quantities are known we can consider the amplitude modulation of the strain due to the average motion of LISA's orbit.
 
-We write that the position of the source on the sky is given by the ecliptic coordinates ($\theta$, $\phi$), the inclination of a source is $\iota$ and the polarisation of a source (determined by its orientation relative to the detector) is given by $\psi$. We closely follow the results of \citet{Cornish2003} to write down the amplitude modulation as
+We write that the position of the source on the sky is given by the ecliptic coordinates ($\theta$, $\phi$), the inclination of a source is $\iota$ and the polarisation of a source (determined by its orientation relative to the detector) is given by $\psi$. We follow the results of \citet{Cornish2003} to define the amplitude modulation. However, we adapt their expression to remain in the frequency domain and follow the conventions of more recent papers \citep[e.g.][Eq.\ 67]{Babak+2021} to write the amplitude modulation as
 
 \begin{equation}{\lwFuncURL{strain}{amplitude_modulation}}
-    A_{\rm{mod}}^{2}=\frac{1}{2} \left[\left(1+\cos ^{2} \iota\right)^{2}\left\langle F_{+}^{2}\right\rangle_{\rm \referee{orb}}+4 \cos ^{2} \iota\left\langle F_{\times}^{2}\right\rangle_{\rm \referee{orb}}\right],
+    A_{\rm{mod}}^{2}= \frac{1}{4} \left(1+\cos ^{2} \iota\right)^{2}\left\langle F_{+}^{2}\right\rangle_{\rm \referee{orb}}+ \cos ^{2} \iota\left\langle F_{\times}^{2}\right\rangle_{\rm \referee{orb}},
 \label{eq:amp_mod}
 \end{equation}
 where $\left\langle F_{+}^{2}\right\rangle_{\rm \referee{orb}}$ and $\left\langle F_{\times}^{2}\right\rangle_{\rm \referee{orb}}$, the orbit-averaged detector responses, are defined as
