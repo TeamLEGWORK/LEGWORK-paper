@@ -2,6 +2,7 @@ import legwork as lw
 import numpy as np
 import astropy.units as u
 import matplotlib.pyplot as plt
+import paths
 
 plt.rc('font', family='serif')
 plt.rcParams['text.usetex'] = False
@@ -163,4 +164,4 @@ ax.set_facecolor(plt.get_cmap("viridis")(0.0))
 
 ax.set_rasterization_zorder(10000)
 
-plt.savefig("horizon_distance.pdf", format="pdf", bbox_inches="tight")
+plt.savefig(paths.figures / "horizon_distance.pdf", format="pdf", bbox_inches="tight")

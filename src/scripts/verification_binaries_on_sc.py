@@ -2,6 +2,7 @@ import legwork as lw
 import numpy as np
 import astropy.units as u
 import matplotlib.pyplot as plt
+import paths
 
 from astropy.visualization import quantity_support
 quantity_support()
@@ -37,4 +38,4 @@ ax.legend(handles=[ax.get_children()[1]], labels=["LISA Verification Binaries (K
 
 ax.set_rasterization_zorder(10000)
 
-plt.savefig("verification_binaries_on_sc.pdf", format="pdf", bbox_inches="tight")
+plt.savefig(paths.figures / "verification_binaries_on_sc.pdf", format="pdf", bbox_inches="tight")

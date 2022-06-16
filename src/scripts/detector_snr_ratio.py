@@ -3,6 +3,7 @@ import numpy as np
 import astropy.units as u
 import matplotlib.pyplot as plt
 from matplotlib.colors import TwoSlopeNorm
+import paths
 
 plt.rc('font', family='serif')
 plt.rcParams['text.usetex'] = False
@@ -92,4 +93,4 @@ ax.annotate(source_string, xy=(0.98, 0.03), xycoords="axes fraction", ha="right"
 
 ax.set_rasterization_zorder(10000)
 
-plt.savefig("detector_snr_ratio.pdf", format="pdf", bbox_inches="tight")
+plt.savefig(paths.figures / "detector_snr_ratio.pdf", format="pdf", bbox_inches="tight")
