@@ -1,5 +1,6 @@
 <p align="center">
-    <img width="500", src="https://raw.githubusercontent.com/TeamLEGWORK/LEGWORK/main/docs/images/legwork.png">
+    <img width="500", src="https://raw.githubusercontent.com/TeamLEGWORK/LEGWORK/main/docs/images/legwork.png#gh-light-mode-only">
+    <img width="500", src="https://raw.githubusercontent.com/TeamLEGWORK/LEGWORK/main/docs/images/legwork_darkmode.png#gh-dark-mode-only">
 </p>
 <h2 align="center">The LEGWORK Release Paper</h2>
 <p align="center">
