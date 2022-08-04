@@ -4,6 +4,7 @@ import astropy.units as u
 import matplotlib.pyplot as plt
 from matplotlib.colors import TwoSlopeNorm
 import paths
+from copy import copy
 
 plt.rc('font', family='serif')
 plt.rcParams['text.usetex'] = False
@@ -42,10 +43,10 @@ sources = lw.source.Source(m_1=m_1, m_2=m_2, f_orb=F_flat * u.Hz, ecc=E_flat, di
 sources.get_merger_time()
 
 # compute the LISA SNR
-LISA_snr = sources.get_snr(verbose=True, which_sources=sources.t_merge > 0.1 * u.yr)
+LISA_snr = copy(sources.get_snr(verbose=True, which_sources=sources.t_merge > 0.1 * u.yr))
 
 # compute the TianQin SNR
-sources.update_sc_params({"instrument": "TianQin", "L": np.sqrt(3) * 1e5 * u.km})
+sources.update_sc_params({"instrument": "TianQin"})
 TQ_snr = sources.get_snr(verbose=True, which_sources=sources.t_merge > 0.1 * u.yr)
 
 # create a figure
